@@ -1,0 +1,16 @@
+.logo{
+    width: 60px;
+}
+
+.letra{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+  }
+
+header{ 
+    background-color: rgb(10, 29, 56); 
+} 
+
+.submit{
+    margin-left: 583px;
+}

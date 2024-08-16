@@ -1,0 +1,22 @@
+.logo{
+    width: 55px;
+}
+
+.letra{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+}
+
+header{
+    background-color: rgb(10, 29, 56);
+}
+
+.img-slide{
+    height: 350px;
+    object-fit: cover;
+}
+
+
+
+
+
