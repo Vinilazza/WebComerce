@@ -58,17 +58,25 @@
                     </ul>
                 </li>
             
-            <li>
-                <a href="form_cadastro_usuario.php">
-                    <i class="fas fa-user"></i>
-                    Usuários
-                </a>
-            </li>
+                <li class="active">
+                    <a href="#produtosSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <img src="img/diamond.svg" alt="Ícone produto" width="20px">
+                        Produtos
+                    </a>
+                    <ul class="collapse list-unstyled" id="produtosSubmenu2">
+                        <li>
+                            <a href="form_cadastro_usuarios.php">Cadastrar produtos</a>
+                        </li>
+                        <li>
+                            <a href="form_lista_usuarios.php">Listar produtos</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
 
             <ul>
                 <li>
-                    <a href="logout.php" class="mt-1 me-1">Sair</a>
+                    <a href="admin/logout.php" class="mt-1 me-1">Sair</a>
                 </li>
             </ul>
         </nav>
