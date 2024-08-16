@@ -9,6 +9,14 @@ class UsuarioDAO{
         $sql = "insert into usuarios (login, senha) values ('{$dados['login']}','{$senha}')";
         $conexao->exec($sql);
     }
+
+    function editar($dados){
+        $conexao = ConexaoBD::getConexao();
+        $senha = md5($dados['senha']);
+        $sql = "insert into usuarios (login, senha) values ('{$dados['login']}','{$senha}')";
+        $conexao->exec($sql);
+    }
+
     function consultarPorChave($chave){
         $conexao = ConexaoBD::getConexao();
 
@@ -34,6 +42,14 @@ class UsuarioDAO{
             return $resultado->fetchAll(PDO::FETCH_ASSOC);
         }
     
+        public function consultarProdutoPorID($id){
+            $conexao = ConexaoBD::getConexao();
+    
+            $sql = "SELECT * FROM usuarios WHERE idproduto = $id";
+            
+            $resultado = $conexao->query($sql);
+            return $resultado->fetch(PDO::FETCH_ASSOC);
+        }
 
     function validarUsuario($dados){
         $conexao = ConexaoBD::getConexao();

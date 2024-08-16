@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "src/UsuarioDAO.php";
+    require_once "../../src/UsuarioDAO.php";
 
     $usuarioDAO = new UsuarioDAO();
 

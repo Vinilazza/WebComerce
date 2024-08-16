@@ -1,21 +1,18 @@
 <?php
-    include "topo.php";    
-    require_once("src/usuarioDAO.php");
+
+    include "../layout/topo.php";    
+    require_once("../../src/ClienteDAO.php");
     
     
     if (isset($_GET['mensagem']))
         $mensagem = $_GET['mensagem'];
     
-    $usuarioDAO = new usuarioDAO();
-    if(isset($_GET['idusuario'])){
-        $ProdutoDAO->remover($_GET['idusuario']);
-        $mensagem = "Usuario removido com sucesso";
-    }
+    $clienteDAO = new ClienteDAO();
 
     if(isset($_GET['chave'])){
-        $usuarios = $usuarioDAO->consultarPorChave($_GET['chave']);
+        $clientes = $clienteDAO->consultarPorChave($_GET['chave']);
     }else
-        $usuarios = $usuarioDAO->consultarUsuarios();
+        $clientes = $clienteDAO->consultarClientes();
 
     if (isset($mensagem)){
 ?>  
@@ -34,7 +31,7 @@
 ?>
 
     <div class="d-flex">
-    <form action="form_lista_usuarios.php" class="container w-50 my-0 borde roundend p-3 ">
+    <form action="form_lista_clientes.php" class="container w-50 my-0 borde roundend p-3 ">
         <div class="mb-2">
             <label class="form-label">Buscar por Nome</label>
             <input type="text" name="chave" class="form-control">
@@ -48,14 +45,16 @@
     <table>
         <tr>            
             <th>ID</th>
-            <th>Nome do produto</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Endereco</th>
             <th></th>
         </tr>
                 
         <?php
-        if(sizeof($usuarios) > 0){
-            foreach($usuarios as $usuario){
-                include("componentes/usuario.php");
+        if(sizeof($clientes) > 0){
+            foreach($clientes as $cliente){
+                include("../../componentes/clientes.php");
             }
         }
         ?>
@@ -64,5 +63,5 @@
 
 
 <?php
-    include "rodape.php";
+    include "../layout/rodape.php";
 ?>

@@ -1,7 +1,8 @@
 <?php
-    include "topo.php";
-    require_once('src/CategoriaDAO.php');
-    require_once('src/JoiaDAO.php');
+
+    include "../layout/topo.php";
+    require_once('../../src/CategoriaDAO.php');
+    require_once('../../src/JoiaDAO.php');
 
     $categoriaDAO = new CategoriaDAO();
     $categorias = $categoriaDAO->consultarCategorias();
@@ -68,5 +69,5 @@
     </form>
 
 <?php
-include "rodape.php";
+include "../layout/rodape.php";
 ?>

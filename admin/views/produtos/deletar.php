@@ -1,7 +1,7 @@
 <?php
 
-require_once('src/ProdutoDAO.php');
-require_once('src/ConexaoBD.php');
+require_once('../../src/ProdutoDAO.php');
+require_once('../../src/ConexaoBD.php');
 $produtoDAO = new ProdutoDAO();
 $produtoDAO->deletar($_GET['idproduto']);
 

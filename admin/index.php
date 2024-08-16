@@ -1,5 +1,5 @@
 <?php
-    include "topo.php";
+    include "views/layout/topo.php";
 ?>
 
 <?php
@@ -23,5 +23,5 @@
         <!-- FIM CONTEÚDO -->
 
 <?php
-    include "rodape.php";
+    include "views/layout/rodape.php";
 ?>

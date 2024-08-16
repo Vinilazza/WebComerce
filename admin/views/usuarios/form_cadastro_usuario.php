@@ -1,5 +1,5 @@
 <?php
-    include"topo.php";
+    include "../layout/topo.php";
 ?>
 
 <form action="cadastro_usuario.php" method="POST" class="container w-75 border rounded bg-secondary bg-opacity-50 needs-validation">
@@ -43,5 +43,5 @@
 </form>
 
 <?php
-    include"rodape.php";
+    include "../layout/rodape.php";
 ?>

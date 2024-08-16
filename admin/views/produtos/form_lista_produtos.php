@@ -1,6 +1,6 @@
 <?php
-    include "topo.php";    
-    require_once("src/ProdutoDAO.php");
+    include "../layout/topo.php";    
+    require_once("../../src/ProdutoDAO.php");
     
     
     if (isset($_GET['mensagem']))
@@ -56,7 +56,7 @@
         <?php
         if(sizeof($produtos) > 0){
             foreach($produtos as $produto){
-                include("componentes/produto.php");
+                include("../../com  ponentes/produto.php");
             }
         }
         ?>
@@ -65,5 +65,5 @@
 
 
 <?php
-    include "rodape.php";
+    include "../layout/rodape.php";
 ?>

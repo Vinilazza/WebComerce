@@ -1,7 +1,7 @@
 <?php
-    include "topo.php";
-    require_once('src/ProdutoDAO.php');
-    require_once('src/funcao.php');
+    include "../layout/topo.php";
+    require_once('../../src/ProdutoDAO.php');
+    require_once('../../src/funcao.php');
     $produtoDAO = new ProdutoDAO();
     $produtoDAO->editar($_POST, $_GET['idproduto']);
     ?>
