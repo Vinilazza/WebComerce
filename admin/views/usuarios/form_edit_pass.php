@@ -1,30 +1,22 @@
 <?php
     include "../layout/topo.php";
-    require_once('../../src/CategoriaDAO.php');
-    require_once('../../src/ProdutoDAO.php');
-    require_once('../../src/JoiaDAO.php');
+    require_once('../../src/UsuarioDAO.php');
 
-    $categoriaDAO = new CategoriaDAO();
-    $categorias = $categoriaDAO->consultarCategorias();
-
-    $joiaDAO = new JoiaDAO();
-    $joias = $joiaDAO->consultarJoias();
-
-    $produtoDAO = new ProdutoDAO();
-    $produto = $produtoDAO->consultarProdutoPorID($_GET['idproduto']);
+    $usuarioDAO = new UsuarioDAO();
+    $usuario = $usuarioDAO->consultarUsuarioPorID($_GET['idusuarios']);
 ?>
 
     <h2>Cadastro de Produto</h2>
-    <form method="POST" action="editar.php?idproduto=<?=$produto['idproduto']?>" enctype="multipart/form-data">
+    <form method="POST" action="editar.php?idproduto=<?=$usuario['idusuarios']?>" enctype="multipart/form-data">
 
         <label for="nome" class="form-label">Nome:</label>
-        <input type="text" required class="form-control mb-4" name="nome" value="<?=$produto['nome']?>">
+        <input type="text" required class="form-control mb-4" name="nome" value="<?=$usuario['nome']?>">
 
         <label for="email" class="form-label">Email:</label>
-        <input type="text" required class="form-control mb-4" name="preco" value="<?=$produto['preco']?>" >
+        <input type="text" required class="form-control mb-4" name="email" value="<?=$usuario['email']?>" >
 
         <label for="senha" class="form-label">Senha:</label>
-        <input type="text" required class="form-control mb-4" name="senha" value="<?=$produto['senha']?>">
+        <input type="text" required class="form-control mb-4" name="senha" value="<?=$usuario['senha']?>">
 
         <button class="btn btn-dark mt-4">Editar</button>
 

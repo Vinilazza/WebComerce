@@ -23,8 +23,8 @@
 ?>
 
 <div class="mb-3">
-    <label for="loginId" class="form-label">Login</label>
-    <input type="next" name="login" class="form-control" id="loginId"
+    <label for="nome" class="form-label">Login</label>
+    <input type="next" name="nome" class="form-control" id="nome"
     required>
     <div class="invalid-feedback">
        Usuário inválido.

@@ -56,7 +56,7 @@
         <?php
         if(sizeof($produtos) > 0){
             foreach($produtos as $produto){
-                include("../../com  ponentes/produto.php");
+                include("../../componentes/produto.php");
             }
         }
         ?>

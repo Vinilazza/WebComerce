@@ -1,5 +1,6 @@
 <?php
     include "../layout/topo.php";
+
 ?>
 
 <form action="cadastro_usuario.php" method="POST" class="container w-75 border rounded bg-secondary bg-opacity-50 needs-validation">
@@ -16,12 +17,17 @@
 ?>
 
 <div class="mb-3">
-    <label for="loginId" class="form-label">Login</label>
-    <input type="next" name="login" class="form-control" id="loginId"
+    <label for="loginId" class="form-label">Nome:</label>
+    <input type="next" name="nome" class="form-control" id="nome"
     required>
     <div class="invalid-feedback">
        Usuário inválido. (nome.sobrenome)
     </div>
+</div>
+<div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="text" name="email" class="form-control" id="email"
+    required>
 </div>
 
 <div class="mb-3">

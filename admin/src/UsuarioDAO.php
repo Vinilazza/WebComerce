@@ -1,70 +1,82 @@
 <?php
 require_once "ConexaoBD.php";
 
-class UsuarioDAO{
+class UsuarioDAO {
 
-    function cadastrar($dados){
+    function cadastrar($dados) {
         $conexao = ConexaoBD::getConexao();
-        $senha = md5($dados['senha']);
-        $sql = "insert into usuarios (login, senha) values ('{$dados['login']}','{$senha}')";
-        $conexao->exec($sql);
+        $senhaHash = password_hash($dados['senha'], PASSWORD_DEFAULT);
+        $sql = "INSERT INTO admin (nome, email, senha) VALUES (:nome, :email, :senha)";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute([
+            ':nome' => $dados['nome'],
+            ':email' => $dados['email'],
+            ':senha' => $senhaHash
+        ]);
     }
 
-    function editar($dados){
+    function editar($dados) {
         $conexao = ConexaoBD::getConexao();
-        $senha = md5($dados['senha']);
-        $sql = "insert into usuarios (login, senha) values ('{$dados['login']}','{$senha}')";
-        $conexao->exec($sql);
+        $senhaHash = password_hash($dados['senha'], PASSWORD_DEFAULT);
+        $sql = "UPDATE admin SET nome = :nome, email = :email, senha = :senha WHERE idadmin = :id";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute([
+            ':nome' => $dados['nome'],
+            ':email' => $dados['email'],
+            ':senha' => $senhaHash,
+            ':id' => $dados['idadmin']
+        ]);
     }
 
-    function consultarPorChave($chave){
+    function consultarPorChave($chave) {
         $conexao = ConexaoBD::getConexao();
-
-        $sql = "SELECT * FROM usuarios where login like'%$chave%'";
-
-        $resultado = $conexao->query($sql);
-
-        return $resultado->fetchAll(PDO::FETCH_ASSOC);
-
+        $sql = "SELECT * FROM admin WHERE nome LIKE :chave";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute([':chave' => "%$chave%"]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function consultarLogin($login){
+    function consultarLogin($nome) {
         $conexao = ConexaoBD::getConexao();
-        $sql = "select * from usuarios where login='$login'";
-        $resultado = $conexao->query($sql);
-        return $resultado->fetch(PDO::FETCH_ASSOC);
-        }
-
-        public function consultarUsuarios(){
-            $conexao = ConexaoBD::getConexao();
-            $sql = 'SELECT * FROM usuarios';
-            $resultado = $conexao->query($sql);
-            return $resultado->fetchAll(PDO::FETCH_ASSOC);
-        }
-    
-        public function consultarProdutoPorID($id){
-            $conexao = ConexaoBD::getConexao();
-    
-            $sql = "SELECT * FROM usuarios WHERE idproduto = $id";
-            
-            $resultado = $conexao->query($sql);
-            return $resultado->fetch(PDO::FETCH_ASSOC);
-        }
-
-    function validarUsuario($dados){
+        $sql = "SELECT * FROM admin WHERE nome = :nome";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute([':nome' => $nome]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function consultarUsuarioPorID($id){
         $conexao = ConexaoBD::getConexao();
-        $senha = md5($dados["senha"]);
-        $sql = "select * from usuarios where login='{$dados['login']}' and senha='{$senha}'";
+
+        $sql = "SELECT * FROM admin WHERE idadmin = $id";
+        
         $resultado = $conexao->query($sql);
         return $resultado->fetch(PDO::FETCH_ASSOC);
-        }
-
-        public function deletar($id){
-            $conexao = ConexaoBD::getConexao();
-            $sql = "DELETE FROM usuarios WHERE idusuarios=$id";
-            
-            $conexao->exec($sql);
-        }
     }
 
-    
+    public function consultarUsuarios() {
+        $conexao = ConexaoBD::getConexao();
+        $sql = "SELECT * FROM admin";
+        $stmt = $conexao->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function validarUsuario($dados) {
+        $conexao = ConexaoBD::getConexao();
+        $sql = "SELECT idadmin, nome, email, senha FROM admin WHERE nome = :nome";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute([':nome' => $dados['nome']]);
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario && password_verify($dados['senha'], $usuario['senha'])) {
+            return $usuario; // Retorna o array com id, nome, email e senha
+        }
+
+        return false; // Retorna false se o login falhar
+    }
+
+    public function deletar($id) {
+        $conexao = ConexaoBD::getConexao();
+        $sql = "DELETE FROM admin WHERE idadmin = :id";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute([':id' => $id]);
+    }
+}

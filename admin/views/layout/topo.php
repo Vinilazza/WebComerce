@@ -48,7 +48,7 @@ $clientes = '/admin/views/clientes'
         <nav id="sidebar">
             <div class="sidebar-header">
                 <a href="../../index.php">
-                    <h3>MA - Admin</h3>
+                    <h3>Administração</h3>
                     <strong>Admin</strong>
                 </a>
             </div>
@@ -103,7 +103,7 @@ $clientes = '/admin/views/clientes'
 
             <ul>
                 <li>
-                    <a href="<?php echo $produtos; ?>/logout.php" class="mt-1 me-1">Sair</a>
+                    <a href="<?php echo $login; ?>/logout.php" class="mt-1 me-1">Sair</a>
                 </li>
             </ul>
         </nav>

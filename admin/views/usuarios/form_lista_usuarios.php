@@ -49,6 +49,8 @@
         <tr>            
             <th>ID</th>
             <th>Nome</th>
+            <th>Email</th>
+            <th>Data de criação</th>
             <th></th>
         </tr>
                 
