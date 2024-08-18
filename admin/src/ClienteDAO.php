@@ -33,6 +33,24 @@ class ClienteDAO{
 
     }
 
+    function registrarVisita(){
+        $conexao = ConexaoBD::getConexao();
+
+     $ip = $_SERVER['REMOTE_ADDR']; 
+     $query = "INSERT INTO visitas (ip) VALUES (:ip)";
+     $stmt = $conexao->prepare($query);
+     $stmt->bindParam(':ip', $ip);
+     $stmt->execute();
+    }
+
+    function contarVisitas() {
+        $conexao = ConexaoBD::getConexao();
+
+        $query = "SELECT COUNT(*) AS total FROM visitas";
+        $stmt = $conexao->prepare($query);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    }
 
 }
 

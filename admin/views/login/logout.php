@@ -2,6 +2,6 @@
     session_start();
     session_destroy();
 
-    header("Location:admin/views/login/login.php");
+    header("Location:/admin/views/login/login.php");
 
 ?>

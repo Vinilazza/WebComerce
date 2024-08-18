@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+
 .logo{
     width: 55px;
 }
@@ -7,16 +10,84 @@
   font-size: 15px;
 }
 
-header{
+/* header{
     background-color: rgb(10, 29, 56);
-}
+} */
 
 .img-slide{
     height: 350px;
     object-fit: cover;
 }
 
+.vltech {
+    color: #00A2E8; /* Cor azul para "VL" */
+    font-size: 25px; /* Ajuste o tamanho conforme necessário */
+}
+
+.tech {
+    color: #FF7F27; /* Cor laranja para "TECH" */
+    font-size: 25px; /* Tamanho semelhante ao de "VL" */
+}
+
+.informatica {
+    display: block; /* Coloca "INFORMATICA" abaixo de "VLTECH" */
+    color: #FF7F27; /* Cor laranja */
+    font-size: 10px; /* Menor que "VLTECH" */
+    letter-spacing: 2px; /* Espacemento entre letras */
+    margin-left: 8px;    
+}
 
 
 
 
+.lg2 {
+    font-family: "Michroma", sans-serif;
+
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+.form{
+
+    position: relative;
+}
+
+.form .fa-search{
+
+    position: absolute;
+    top:20px;
+    left: 20px;
+    color: #9ca3af;
+
+}
+
+.form span{
+
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    padding: 2px;
+    border-left: 1px solid #d1d5db;
+
+}
+
+.left-pan{
+    padding-left: 7px;
+}
+
+
+
+.form-input{
+
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px;
+}
+
+.form-input:focus{
+
+    box-shadow: none;
+    border:none;
+}

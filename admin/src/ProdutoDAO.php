@@ -96,4 +96,18 @@ class ProdutoDAO{
         
         $conexao->exec($sql);
     }
+
+    public function contarProdutos() {
+        $conexao = ConexaoBD::getConexao();
+        $sql = "SELECT COUNT(*) AS total FROM produto";
+        $stmt = $conexao->query($sql);
+        return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    }
+    public function contarClientes() {
+        $conexao = ConexaoBD::getConexao();
+        $sql = "SELECT COUNT(*) AS total FROM clientes";
+        $stmt = $conexao->query($sql);
+        return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    }
+
 }

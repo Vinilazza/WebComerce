@@ -15,7 +15,7 @@ class UsuarioDAO {
         ]);
     }
 
-    function editar($dados) {
+    function editar($dados, $id) {
         $conexao = ConexaoBD::getConexao();
         $senhaHash = password_hash($dados['senha'], PASSWORD_DEFAULT);
         $sql = "UPDATE admin SET nome = :nome, email = :email, senha = :senha WHERE idadmin = :id";
@@ -24,7 +24,7 @@ class UsuarioDAO {
             ':nome' => $dados['nome'],
             ':email' => $dados['email'],
             ':senha' => $senhaHash,
-            ':id' => $dados['idadmin']
+            ':id' => $id
         ]);
     }
 

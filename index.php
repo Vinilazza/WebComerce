@@ -1,6 +1,12 @@
 <?php
 include "incs/header.php";
 require_once "admin/src/ProdutoDAO.php";
+require_once "admin/src/ClienteDAO.php";
+
+$clienteDAO = new ClienteDAO();
+$clienteDAO->registrarVisita()
+
+
 ?>
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">

@@ -1,19 +1,18 @@
 <?php
-define('BASE_PATH', __DIR__ . '/../../');
-define('Login', __DIR__ . '/../../');
+// Define the base URL for the admin panel
+define('BASE_URL', '/admin');
 
-require_once BASE_PATH . '/src/ConexaoBD.php';
+// Paths for various views
+$public = BASE_URL . '/public';
 
-?>
-<?php
-include Login . "views/login/validar_sessao.php";
-?>
-<?php
-$basePath = '/admin/public';
-$produtos = '/admin/views/produtos';
-$usuarios = '/admin/views/usuarios';
-$login = '/admin/views/login';
-$clientes = '/admin/views/clientes'
+$produtos = BASE_URL . '/views/produtos';
+$usuarios = BASE_URL . '/views/usuarios';
+$login = BASE_URL . '/views/login';
+$clientes = BASE_URL . '/views/clientes';
+
+// Include necessary files
+require_once __DIR__ . '/../../src/ConexaoBD.php';
+include __DIR__ . '/../../views/login/validar_sessao.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,9 +31,9 @@ $clientes = '/admin/views/clientes'
 
 
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="<?php echo $basePath; ?>/css/estilo.css">
-    <link rel="stylesheet" href="<?php echo $basePath; ?>/css/estilo_menu.css">
-
+    <link rel="stylesheet" href="<?php echo $public; ?>/css/estilo.css">
+    <link rel="stylesheet" href="<?php echo $public; ?>/css/estilo_menu.css">
+    <link rel="stylesheet" href="<?php echo $public; ?>/css/admin.css">
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -56,7 +55,7 @@ $clientes = '/admin/views/clientes'
             <ul class="list-unstyled components">
                 <li class="active">
                     <a href="#produtosSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <img src="<?php echo $basePath; ?>/img/diamond.svg" alt="Ícone produto" width="20px">
+                        <img src="<?php echo $public; ?>/img/diamond.svg" alt="Ícone produto" width="20px">
                         Produtos
                     </a>
                     <ul class="collapse list-unstyled" id="produtosSubmenu">
