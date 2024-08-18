@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+require_once "admin/src/CategoriaDAO.php";
+
+$categoriaDAO = new CategoriaDAO();
+$categorias = $categoriaDAO->consultarCategorias();
+
 if (!isset($_SESSION['carrinho'])) {
     $_SESSION['carrinho'] = [];
 }
@@ -87,35 +92,54 @@ $cart_count = count($_SESSION['carrinho']);
         </div>
 
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+            <div class="container d-flex ">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="justify-content-center">
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="img/diamante.png" width="20px" alt=""> <b> Jóias</b>
-                            </a>
+                        <ul class="navbar-nav d-flex align-items-center ">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Categorias
+                                </a>
 
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Prata</a></li>
-                                <li><a class="dropdown-item" href="#">Ouro</a></li>
-                                <li><a class="dropdown-item" href="#">Ouro Branco</a></li>
-                            </ul>
-                        </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><img src="img/anel.png" width="25px" alt=""> <b>Semijóias</b> </a>
-                        </li>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <?php
+                                    if (sizeof($categorias) > 0) {
+                                        foreach ($categorias as $categoria) {
+                                            $id = $categoria['idcategoria'];
+                                            $nome = $categoria['categoria'];
+                                            echo "<li><a class='dropdown-item' href='/categoria/$id' id='$id'>$nome</a></li>";
+                                        }
+                                    }
+                                    ?>
+                                </ul>
+                            </li>
+                            <li class="nav-item me-3">
+                                <a href="#" class="text-decoration-none text-dark">Ofertas</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><img src="img/livro.jpg" width="30px" alt=""> <b>Revenda</b></a>
-                        </li>
-                    </ul>
+                            <li class="nav-item me-3">
+                                <a href="#" class="text-decoration-none text-dark">Computadores</a>
+                            </li>
+                            <li class="nav-item me-3">
+                                <a href="#" class="text-decoration-none text-dark">Perifericos</a>
+                            </li>
+                            <li class="nav-item me-3">
+                                <a href="#" class="text-decoration-none text-dark">Rede</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="text-decoration-none text-dark">Suporte Tecnico</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
+
             </div>
         </nav>
     </header>
