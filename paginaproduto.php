@@ -36,7 +36,7 @@
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#produtoCarousel" data-bs-slide="next">
+                    <button class="carousel-control-next text-dark" type="button" data-bs-target="#produtoCarousel" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
@@ -46,14 +46,16 @@
             <div class="col-6">
                 <div class="row">
                     <div class="col-12">
-                        <h2><?= htmlspecialchars($produto['nome']) ?></h2>
+                        <h2 class="fnt-price"><?= htmlspecialchars($produto['nome']) ?></h2>
                     </div>
-                    <div class="col-12">
-                        <h4><b>R$<?= number_format($produto['preco'], 2, ",", ".") ?></b></h4>
-                        <p><b>Edição limitada</b></p>
-                        <p>Coleção inverno 2022</p>
-                        <h6>Em até <?=$produto['parcelas']?>x de R$ <?= number_format($produto['preco']/$produto['parcelas'], 2, ",", ".") ?> sem juros no cartão</h6>
-                        <h6>Ou em 1x no cartão com até 5% OFF
+                    <div class="col-12 fnt-price">
+                        <p style="font-size: 14px">Vendido e entregue por: <b>VLTECH INFORMATICA!</b> | Em estoque (<?=$produto['quantidade']?>)</p>
+                        <h4 class="fnt-price price" style="font-size: 40px"><b>R$ <?= number_format($produto['preco'], 2, ",", ".") ?></b></h4>
+                        <h4 class="fnt-price mb-4" style="font-size: 14px">À vista no PIX com até * OFF</h4>
+
+                        <h6 style="font-size: 14px"><b>R$ <?=number_format($produto['preco'], 2, ",", ".")?></b></h6>
+                        <h6 style="font-size: 14px">Em até <?=$produto['parcelas']?>x de R$ <b><?= number_format($produto['preco']/$produto['parcelas'], 2, ",", ".") ?></b> sem juros no cartão</h6>
+                        <h6 style="font-size: 14px">Ou em 1x no cartão com até 5% OFF
                         </h6>
                     </div>
                 </div>
