@@ -4,7 +4,8 @@ require_once "admin/src/ProdutoDAO.php";
 require_once "admin/src/ClienteDAO.php";
 
 $clienteDAO = new ClienteDAO();
-$clienteDAO->registrarVisita()
+$clienteDAO->registrarVisita();
+
 
 
 ?>
@@ -40,24 +41,24 @@ $clienteDAO->registrarVisita()
 <main>
   <main class="container w-74 mt-5">
     <!--produto-->
-<br></br>
-<h2>Produtos de Luxo</h2>
-<br></br>
+    <br></br>
+    <h2>Produtos de Luxo</h2>
+    <br></br>
     <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
       <?php
       $produtoDAO = new ProdutoDAO();
-      $produtos = $produtoDAO->consultarColecao("Luxo");
+      $produtos = $produtoDAO->consultarCategorias("Hardware");
       foreach ($produtos as $p) :
       ?>
         <div class="col">
-          <a href="paginaproduto.php?idproduto=<?=$p['idproduto']?>" class="text-decoration-none text-dark ">
+          <a href="paginaproduto.php?idproduto=<?= $p['idproduto'] ?>" class="text-decoration-none text-dark ">
             <div class="card h-100">
-              <img src="data:image/png;base64,<?=base64_encode($p['imagem'])?>" class="card-img-top img-barbie" alt="...">
+              <img src="data:image/png;base64,<?= base64_encode($p['imagem']) ?>" class="card-img-top img-barbie" alt="...">
               <div class="card-body">
-              <h5 class="card-title"><?=$p['nome']?></h5>
-                <p class="card-text"><?=$p['descricao'] ?></p>
-                <p class="card-text text-success">R$ <?=number_format($p['preco'], 2,",",".")?></p>
-                <a href="paginaproduto.php?idproduto=<?=$p['idproduto']?>" class="btn btn-dark mt-3"> Comprar</a>
+                <h5 class="card-title"><?= $p['nome'] ?></h5>
+                <p class="card-text"><?= $p['desccurta'] ?></p>
+                <p class="card-text text-success">R$ <?= number_format($p['preco'], 2, ",", ".") ?></p>
+                <a href="paginaproduto.php?idproduto=<?= $p['idproduto'] ?>" class="btn btn-dark mt-3"> Comprar</a>
               </div>
             </div>
           </a>
@@ -67,31 +68,43 @@ $clienteDAO->registrarVisita()
       ?>
     </div>
 
-<br></br>
-<h2>Todas as Coleções</h2>
-<br></br>
-    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+    <br></br>
+    <h2>Todas as Coleções</h2>
+    <br></br>
+    <div class="row row-cols-1 row-cols-md-4 row-cols-lg-4 g-4">
       <?php
-      $produtoDAO = new ProdutoDAO();
-      $produtos = $produtoDAO->consultarProdutos();
-      foreach ($produtos as $p) :
-      ?>
-        <div class="col">
-          <a href="paginaproduto.php?idproduto=<?=$p['idproduto']?>" class="text-decoration-none text-dark ">
-            <div class="card h-100">
-              <img src="data:image/png;base64,<?=base64_encode($p['imagem'])?>" class="card-img-top img-barbie" alt="...">
-              <div class="card-body">
-                <h5 class="card-title"><?=$p['nome']?></h5>
-                <p class="card-text"><?=$p['descricao'] ?></p>
-                <p class="card-text text-success">R$ <?=number_format($p['preco'], 2,",",".")?></p>
-                <a href="paginaproduto.php?idproduto=<?=$p['idproduto']?>" class="btn btn-dark mt-3"> Comprar</a>
-              </div>
+    // Obtém todos os produtos
+$produtos = $produtoDAO->consultarProdutos();
+
+foreach ($produtos as $p) :
+    // Para cada produto, obtém a primeira imagem
+    $imagem = $produtoDAO->consultarImagemPrincipal($p['idproduto']);
+    ?>
+    <div class="col">
+        <a href="paginaproduto.php?idproduto=<?= $p['idproduto'] ?>" class="text-decoration-none text-dark">
+            <div class="card h-100 position-relative">
+                
+                <!-- Desconto -->
+                <div class="badge bg-danger position-absolute top-0 start-0 m-2">10% OFF</div>
+                
+                <!-- Imagem do Produto -->
+                <img src="data:image/png;base64,<?= base64_encode($imagem) ?>" class="card-img-top img-barbie" alt="...">
+                
+                <div class="card-body">
+                    <h5 class="card-title"><?= $p['nome'] ?></h5>        
+                    <!-- Preço antigo -->
+                    <span class="text-muted text-decoration-line-through price-old">R$ 555,54</span><br>
+                    <span class=" price">R$ <?= number_format($p['preco'], 2, ",", ".") ?></span><br>
+                    <span class="text-secondary avista">À Vista no PIX</span>
+                    <!-- Botão de Comprar -->
+                    <a href="paginaproduto.php?idproduto=<?= $p['idproduto'] ?>" class="btn-buy text-decoration-none mt-1">Comprar</a>
+                </div>
             </div>
-          </a>
-        </div>
-      <?php
-      endforeach;
-      ?>
+        </a>
+    </div>
+<?php
+endforeach;
+?>
     </div>
 
   </main>

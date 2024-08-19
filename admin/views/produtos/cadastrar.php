@@ -4,6 +4,7 @@
     require_once('../../src/funcao.php');
     $produtoDAO = new ProdutoDAO();
     $produtoDAO->cadastrar($_POST);
+
     ?>
 
 <h1>Cadastrado com sucesso!</h1>
