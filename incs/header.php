@@ -14,7 +14,7 @@ $cart_count = count($_SESSION['carrinho']);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -36,9 +36,9 @@ $cart_count = count($_SESSION['carrinho']);
 
             <div class="d-flex-justify-content-start">
                 <div class="letra col-2 d-flex">
-                    <a href="/index.php"> <img src="img/icon.png" class="logo rounded me-2" alt="logotipo do site"></a>
+                    <a href="/index.php" class="hrv"> <img src="img/icon.png" class="logo rounded me-2" alt="logotipo do site"></a>
                     <div class="d-flex align-items-center">
-                        <a href="/index.php" class="text-decoration-none">
+                        <a href="/index.php" class="hrv text-decoration-none">
                             <h4 class=" lg2">
                                 <span class="vltech">VL</span><span class="tech">TECH</span>
                                 <span class="informatica">INFORMATICA</span>
@@ -71,7 +71,7 @@ $cart_count = count($_SESSION['carrinho']);
 
             <div class="d-flex justify-content-end">
                 <div class="d-flex align-items-center">
-                    <a href="carrinho.php" class="text-decoration-none text-dark position-relative">
+                    <a href="carrinho.php" class="hrv text-decoration-none text-dark position-relative">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                         </svg>
@@ -81,7 +81,7 @@ $cart_count = count($_SESSION['carrinho']);
                             </span>
                         <?php endif; ?>
                     </a>
-                    <a href="login.php" class="mx-3 text-decoration-none text-dark">
+                    <a href="login.php" class="hrv mx-3 text-decoration-none text-dark">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                         </svg>

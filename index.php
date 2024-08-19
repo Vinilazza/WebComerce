@@ -47,12 +47,12 @@ $clienteDAO->registrarVisita();
     <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
       <?php
       $produtoDAO = new ProdutoDAO();
-      $produtos = $produtoDAO->consultarCategorias("Hardware");
+      $produtos = $produtoDAO->consultarCategorias("1");
       foreach ($produtos as $p) :
       ?>
         <div class="col">
           <a href="paginaproduto.php?idproduto=<?= $p['idproduto'] ?>" class="text-decoration-none text-dark ">
-            <div class="card h-100">
+            <div class="card h-100 w-100">
               <img src="data:image/png;base64,<?= base64_encode($p['imagem']) ?>" class="card-img-top img-barbie" alt="...">
               <div class="card-body">
                 <h5 class="card-title"><?= $p['nome'] ?></h5>
@@ -82,7 +82,7 @@ foreach ($produtos as $p) :
     ?>
     <div class="col">
         <a href="paginaproduto.php?idproduto=<?= $p['idproduto'] ?>" class="text-decoration-none text-dark">
-            <div class="card h-100 position-relative card-item hvr-shadow">
+            <div class="card h-100 w-100 position-relative card-item hvr-shadow">
                 
                 <!-- Desconto -->
                 <div class="badge bg-danger position-absolute top-0 start-0 m-2">10% OFF</div>
@@ -93,7 +93,7 @@ foreach ($produtos as $p) :
                 <div class="card-body">
                     <h5 class="card-title"><?= $p['nome'] ?></h5>        
                     <!-- Preço antigo -->
-                    <span class="text-muted text-decoration-line-through price-old">R$ 555,54</span><br>
+                    <span class="text-muted text-decoration-line-through price-old">R$ <?=number_format(($p['preco']* 1.1), 2, ",", ".") ?></span><br>
                     <span class=" price">R$ <?= number_format($p['preco'], 2, ",", ".") ?></span><br>
                     <span class="text-secondary avista">À Vista no PIX</span>
                     <!-- Botão de Comprar -->
@@ -108,7 +108,6 @@ endforeach;
     </div>
 
   </main>
-  <script src="js/bootstrap.bundle.min.js"></script>
   </body>
 
   </html>
