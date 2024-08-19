@@ -55,99 +55,78 @@ span {
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
+/* Sidebar Styles */
+#sidebar {
+    background: #343a40; /* Background escuro */
+    color: #fff;
+    min-width: 250px;
+    max-width: 250px;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #2c3034;
+    text-align: center;
+    border-bottom: 1px solid #47515d;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47515d;
+}
+
+#sidebar ul li {
+    padding: 0px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a {
+    color: #d1d1d1;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    transition: all 0.3s;
+}
+
+#sidebar ul li a:hover {
+    border-radius: 1rem;
+    background: #495057;
+    color: #fff;
+    text-decoration: none;
+}
+
+#sidebar ul li.active > a, 
+a[aria-expanded="true"] {
+    background: #fff;
+    color: #fff;
+}
+
+#sidebar ul li.active > a:hover {
+    background: #0056b3;
+}
+
+#content {
+    padding: 20px;
+    background: #f8f9fa;
+    width: 100%;
+    min-height: 100vh;
+}
 
 .wrapper {
     display: flex;
     align-items: stretch;
 }
 
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    background: rgb(20, 51, 94);
-    color: white;
-    transition: all 0.3s;
-}
 
-#sidebar.active {
-    min-width: 80px;
-    max-width: 80px;
-    text-align: center;
-}
-
-#sidebar.active .sidebar-header h3,
-#sidebar.active .CTAs {
-    display: none;
-}
-
-#sidebar.active .sidebar-header strong {
-    display: block;
-}
-
-#sidebar ul li a {
-    text-align: left;
-}
-
-#sidebar.active ul li a {
-    padding: 20px 10px;
-    text-align: center;
-    font-size: 0.85em;
-}
-
-#sidebar.active ul li a i {
-    margin-right: 0;
-    display: block;
-    font-size: 1.8em;
-    margin-bottom: 5px;
-}
-
-#sidebar.active ul ul a {
-    padding: 10px !important;
-}
-
-#sidebar.active .dropdown-toggle::after {
-    top: auto;
-    bottom: 10px;
-    right: 50%;
-    -webkit-transform: translateX(50%);
-    -ms-transform: translateX(50%);
-    transform: translateX(50%);
-}
-
-#sidebar .sidebar-header {
-    padding: 20px;
-    background:  rgb(10, 29, 56) ;
-    color: white;
-}
-
-#sidebar .sidebar-header strong {
-    display: none;
-    font-size: 1.8em;
-}
-
-#sidebar ul.components {
-    padding: 20px 0;
-}
-
-#sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
-}
-
-#sidebar ul li a:hover {
-    color: white;
-    background: rgb(20, 51, 94);
-}
-
-#sidebar ul li a i {
-    margin-right: 10px;
-}
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: white;
-    background:  rgb(10, 29, 56) ;
+    border-radius: 1rem;
+    box-shadow: rgba(40, 41, 61, 0.08) 0px 0px 1px, rgba(96, 97, 112, 0.16) 0px 0.5px 2px;
+        color: white;
+    background:  #495057 ;
 
 }
 
@@ -167,7 +146,9 @@ ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
     color: white;
-    background:  rgb(10, 29, 56) ;
+    border-radius: 1rem;
+    background:  #49505721 ;
+    box-shadow: rgba(40, 41, 61, 0.08) 0px 0px 1px, rgba(96, 97, 112, 0.16) 0px 0.5px 2px;
 
 }
 

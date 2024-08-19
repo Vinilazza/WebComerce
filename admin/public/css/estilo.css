@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+
 * {
     font-size: 14px;
     font-family: 'Montserrat', sans-serif;
@@ -55,3 +57,33 @@ th {
     font-weight: bold;
     background-color: #EEE;
 }
+
+/* Logo */
+.logo{
+    width: 55px;
+  }
+  .vltech {
+    color: #00A2E8; /* Cor azul para "VL" */
+    font-size: 25px; /* Ajuste o tamanho conforme necessário */
+  }
+  
+  .tech {
+    color: #FF7F27; /* Cor laranja para "TECH" */
+    font-size: 25px; /* Tamanho semelhante ao de "VL" */
+  }
+  
+  .informatica {
+    display: block; /* Coloca "INFORMATICA" abaixo de "VLTECH" */
+    color: #FF7F27; /* Cor laranja */
+    font-size: 10px; /* Menor que "VLTECH" */
+    letter-spacing: 2px; /* Espacemento entre letras */
+    margin-left: 8px;    
+  }
+  
+  .lg2 {
+      font-family: "Michroma", sans-serif;
+  
+      font-weight: bold;
+      text-align: center;
+  }
+  /* End logo */
