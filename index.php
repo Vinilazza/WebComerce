@@ -82,7 +82,7 @@ foreach ($produtos as $p) :
     ?>
     <div class="col">
         <a href="paginaproduto.php?idproduto=<?= $p['idproduto'] ?>" class="text-decoration-none text-dark">
-            <div class="card h-100 position-relative">
+            <div class="card h-100 position-relative card-item hvr-shadow">
                 
                 <!-- Desconto -->
                 <div class="badge bg-danger position-absolute top-0 start-0 m-2">10% OFF</div>

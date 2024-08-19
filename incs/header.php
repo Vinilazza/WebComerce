@@ -21,7 +21,10 @@ $cart_count = count($_SESSION['carrinho']);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/hover.css" rel="stylesheet" media="all">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="icon" href="/img/icon.png" type="image/png">
     <title>VLTECH | Os melhores produtos e serviços de informatica</title>
@@ -107,7 +110,7 @@ $cart_count = count($_SESSION['carrinho']);
                                 </a>
 
 
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <ul class="dropdown-menu aclass" aria-labelledby="navbarDropdownMenuLink">
                                     <?php
                                     if (sizeof($categorias) > 0) {
                                         foreach ($categorias as $categoria) {
@@ -119,20 +122,20 @@ $cart_count = count($_SESSION['carrinho']);
                                     ?>
                                 </ul>
                             </li>
-                            <li class="nav-item me-3">
-                                <a href="#" class="text-decoration-none text-dark">Ofertas</a>
+                            <li class="nav-item p-2 me-2 hvr-underline-from-left ">
+                                <a href="#" class="text-decoration-none text-dark ">Ofertas</a>
                             </li>
 
-                            <li class="nav-item me-3">
+                            <li class="nav-item p-2 me-2 hvr-underline-from-left">
                                 <a href="#" class="text-decoration-none text-dark">Computadores</a>
                             </li>
-                            <li class="nav-item me-3">
+                            <li class="nav-item p-2 me-2 hvr-underline-from-left">
                                 <a href="#" class="text-decoration-none text-dark">Perifericos</a>
                             </li>
-                            <li class="nav-item me-3">
+                            <li class="nav-item p-2 me-2 hvr-underline-from-left">
                                 <a href="#" class="text-decoration-none text-dark">Rede</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item p-2 me-2 hvr-underline-from-left">
                                 <a href="#" class="text-decoration-none text-dark">Suporte Tecnico</a>
                             </li>
                         </ul>

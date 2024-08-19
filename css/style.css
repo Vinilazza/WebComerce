@@ -7,9 +7,21 @@ body {
 
 }
 
-.logo{
-    width: 55px;
+/* Card and Search Bar */
+.form-control:focus {
+  border-color: #6b6f6c !important;
+  outline: 0;
+  box-shadow: none !important;
 }
+.aclass a:hover {
+  color: #000 !important;
+  opacity: 0.7;
+  animation: transition(0.25);
+}
+.card-item:hover {
+  opacity: 0.9;
+}
+
 
 .letra{
   font-family:Verdana, Geneva, Tahoma, sans-serif;
@@ -25,26 +37,29 @@ body {
     object-fit: cover;
 }
 
+
+
+/* Logo */
+.logo{
+  width: 55px;
+}
 .vltech {
-    color: #00A2E8; /* Cor azul para "VL" */
-    font-size: 25px; /* Ajuste o tamanho conforme necessário */
+  color: #00A2E8; /* Cor azul para "VL" */
+  font-size: 25px; /* Ajuste o tamanho conforme necessário */
 }
 
 .tech {
-    color: #FF7F27; /* Cor laranja para "TECH" */
-    font-size: 25px; /* Tamanho semelhante ao de "VL" */
+  color: #FF7F27; /* Cor laranja para "TECH" */
+  font-size: 25px; /* Tamanho semelhante ao de "VL" */
 }
 
 .informatica {
-    display: block; /* Coloca "INFORMATICA" abaixo de "VLTECH" */
-    color: #FF7F27; /* Cor laranja */
-    font-size: 10px; /* Menor que "VLTECH" */
-    letter-spacing: 2px; /* Espacemento entre letras */
-    margin-left: 8px;    
+  display: block; /* Coloca "INFORMATICA" abaixo de "VLTECH" */
+  color: #FF7F27; /* Cor laranja */
+  font-size: 10px; /* Menor que "VLTECH" */
+  letter-spacing: 2px; /* Espacemento entre letras */
+  margin-left: 8px;    
 }
-
-
-
 
 .lg2 {
     font-family: "Michroma", sans-serif;
@@ -52,7 +67,7 @@ body {
     font-weight: bold;
     text-align: center;
 }
-
+/* End logo */
 
 
 .form{
