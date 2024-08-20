@@ -30,19 +30,23 @@ class CategoriaDAO {
     }
 
     // Método para adicionar uma nova categoria
-    public function adicionarCategoria($categoria) {
-        $sql = "INSERT INTO categorias (categoria) VALUES (:categoria)";
+    public function adicionarCategoria($categoria,$imagem) {
+        $sql = "INSERT INTO categorias (categoria,imagem) VALUES (:categoria,:imagem)";
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(':categoria', $categoria);
+        $stmt->bindValue(':imagem', $imagem, PDO::PARAM_LOB);
+
         $stmt->execute();
     }
 
     // Método para editar uma categoria existente
-    public function editarCategoria($idcategoria, $categoria) {
-        $sql = "UPDATE categorias SET categoria = :categoria WHERE idcategoria = :idcategoria";
+    public function editarCategoria($idcategoria, $categoria, $imagem) {
+        $sql = "UPDATE categorias SET categoria = :categoria, imagem = :imagem WHERE idcategoria = :idcategoria";
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(':categoria', $categoria);
         $stmt->bindValue(':idcategoria', $idcategoria);
+        $stmt->bindValue(':imagem', $imagem, PDO::PARAM_LOB);
+
         $stmt->execute();
     }
 
