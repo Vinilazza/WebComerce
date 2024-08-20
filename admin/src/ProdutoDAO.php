@@ -218,6 +218,28 @@ class ProdutoDAO
         }
     }
     
+    public function consultarProdutosPorCategoria($idCategoria, $limit, $offset) {
+        $conexao = ConexaoBD::getConexao();
+        $sql = "SELECT * FROM produtos WHERE idcategoria = :idcategoria LIMIT :limit OFFSET :offset";
+        $stmt = $conexao->prepare($sql);
+        $stmt->bindParam(':idcategoria', $idCategoria, PDO::PARAM_INT);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function contarProdutosPorCategoria($idCategoria) {
+        $conexao = ConexaoBD::getConexao();
+        $sql = "SELECT COUNT(*) as total FROM produtos WHERE idcategoria = :idcategoria";
+        $stmt = $conexao->prepare($sql);
+        $stmt->bindParam(':idcategoria', $idCategoria, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total'];
+    }
+    
+
 
     public function contarProdutos()
     {
