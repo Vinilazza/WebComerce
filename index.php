@@ -62,42 +62,42 @@ $totalPaginas = ceil($totalProdutos / $limit);
 
 
     <div id="carouselExampleFade" class="carousel slide">
-  <div class="carousel-inner ">
-  <?php
-                    $chunks = array_chunk($categorias, 6); // Divida as categorias em grupos de 4
-                    foreach ($chunks as $index => $chunk) :
-                    ?>
-                        <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                            <div class="row d-flex justify-content-center">
-                                <?php foreach ($chunk as $categoria): ?>
-                                    <div class="col-md-2 hrv hvr-shadow">
-                                        <a href="#" class="text-decoration-none text-dark ">
-                                        <div class="card h-100 w-100 p-3 shadow-sm ">
-                                            <img src="data:image/png;base64,<?= base64_encode($categoria['imagem']) ?>" class="img-fluid rounded w-100" alt="<?= htmlspecialchars($categoria['categoria']) ?>">
-                                            <div class="card-body text-center">
-                                                <h5 class="card-title" style="font-size: 20px;"><?= htmlspecialchars($categoria['categoria']) ?></h5>
-                                                <a href="index.php?categoria=<?= $categoria['idcategoria'] ?>" style="font-size:16px;" class="text-decoration-none text-dark">Ver Produtos</a>
-                                            </div>
+        <div class="carousel-inner ">
+            <?php
+            $chunks = array_chunk($categorias, 6); // Divida as categorias em grupos de 4
+            foreach ($chunks as $index => $chunk) :
+            ?>
+                <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                    <div class="row d-flex justify-content-center hvr-shadow">
+                        <?php foreach ($chunk as $categoria): ?>
+                            <div class="col-md-2 hrv hvr-shadow">
+                                <a href="index.php?categoria=<?= $categoria['idcategoria'] ?>" class="text-decoration-none text-dark">
+                                    <div class="card h-100 w-100 p-3 shadow-sm ">
+                                        <img src="data:image/png;base64,<?= base64_encode($categoria['imagem']) ?>" class="img-fluid rounded w-100" alt="<?= htmlspecialchars($categoria['categoria']) ?>">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title" style="font-size: 20px;"><?= htmlspecialchars($categoria['categoria']) ?></h5>
+                                            <a href="index.php?categoria=<?= $categoria['idcategoria'] ?>" style="font-size:16px;" class="text-decoration-none text-dark">Ver Produtos</a>
                                         </div>
-                                        </a>    
                                     </div>
-                                <?php endforeach; ?>
+                                </a>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
-  </div>
-  <button class="carousel-control-prev2" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon2" aria-hidden="true"></span>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-</svg>
-  </button>
-  <button class="carousel-control-next2" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
-</svg>
-  </button>
-</div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <button class="carousel-control-prev2" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon2" aria-hidden="true"></span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+            </svg>
+        </button>
+        <button class="carousel-control-next2" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+            </svg>
+        </button>
+    </div>
 
     <br><br>
     <h2>Todas as Coleções</h2>
