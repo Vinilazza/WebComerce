@@ -133,15 +133,18 @@ class ProdutoDAO
         $preco = $dados['preco'];
         $parcelas = $dados['parcelas'];
         $categoria = $dados['tipo'];
-        $descricao = $dados['descricao'];
+        $descricaotecnica = $dados['descricao_tecnica'];
+        $descricaoproduto = $dados['descricao_produto'];
         $condicao = $dados['condicao'];
-        $desccurta = $dados['desccurta'];
         $quantidade = $dados['quantidade'];
         $imagemPrincipal = $dados['imagem_principal'];
+        $emoferta = isset($dados['em_oferta']) ? 1 : 0;
+        $valoroferta = $dados['valor_oferta'];
+
 
         // Inserir o produto na tabela 'produto'
-        $sql = "INSERT INTO produto (nome, parcelas, idcategoria, descricao, preco, desccurta,quantidade, condicao)
-                VALUES ('$nome', $parcelas, $categoria, '$descricao', $preco, '$desccurta','$quantidade', '$condicao')";
+        $sql = "INSERT INTO produto (nome, parcelas, idcategoria, descricao_tecnica, descricao_produto, preco, em_oferta,valor_oferta, quantidade, condicao)
+                VALUES ('$nome', $parcelas, $categoria, '$descricaotecnica','$descricaoproduto',  $preco, '$emoferta','$valoroferta', '$quantidade', '$condicao')";
         $conexao->exec($sql);
 
         // Recuperar o ID do produto recém-cadastrado

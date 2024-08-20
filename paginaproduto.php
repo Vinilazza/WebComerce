@@ -50,17 +50,22 @@
                     </div>
                     <div class="col-12 fnt-price">
                         <p style="font-size: 14px">Vendido e entregue por: <b>VLTECH INFORMATICA!</b> | Em estoque (<?=$produto['quantidade']?>)</p>
-                        <h4 class="fnt-price price" style="font-size: 40px"><b>R$ <?= number_format($produto['preco'], 2, ",", ".") ?></b></h4>
-                        <h4 class="fnt-price mb-4" style="font-size: 14px">À vista no PIX com até * OFF</h4>
-
-                        <h6 style="font-size: 14px"><b>R$ <?=number_format($produto['preco'], 2, ",", ".")?></b></h6>
+                        <?php if ($produto['em_oferta']): ?>
+                            <h4 class="fnt-price price" style="font-size: 40px"><b>R$ <?= number_format($produto['valor_oferta'], 2, ",", ".") ?></b></h4>
+                            <h6 style="font-size: 14px">À vista no PIX com até <?= round((($produto['preco'] - $produto['valor_oferta']) / $produto['preco']) * 100) ?>% OFF</h6>
+                            <span class="text-muted text-decoration-line-through price-old">R$ <?= number_format($produto['preco'], 2, ",", ".") ?></span>
+                        <?php else: ?>
+                            <h4 class="fnt-price price" style="font-size: 40px"><b>R$ <?= number_format($produto['preco'], 2, ",", ".") ?></b></h4>
+                        <?php endif; ?>
                         <h6 style="font-size: 14px">Em até <?=$produto['parcelas']?>x de R$ <b><?= number_format($produto['preco']/$produto['parcelas'], 2, ",", ".") ?></b> sem juros no cartão</h6>
-                        <h6 style="font-size: 14px">Ou em 1x no cartão com até 5% OFF
-                        </h6>
+                        <h6 style="font-size: 14px">Ou em 1x no cartão com até 5% OFF</h6>
                     </div>
                 </div>
                 <div class="my-5">
-                    <?= htmlspecialchars($produto['descricao']) ?>
+                    <h5>Descrição Técnica</h5>
+                    <p><?= htmlspecialchars($produto['descricao_tecnica']) ?></p>
+                    <h5>Descrição do Produto</h5>
+                    <p><?= htmlspecialchars($produto['descricao_produto']) ?></p>
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-dark text-light w-100">ADICIONAR AO CARRINHO</button>

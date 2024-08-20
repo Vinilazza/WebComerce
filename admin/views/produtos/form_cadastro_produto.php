@@ -7,8 +7,6 @@ require_once('../../src/JoiaDAO.php');
 $categoriaDAO = new CategoriaDAO();
 $categorias = $categoriaDAO->consultarCategorias();
 
-$joiaDAO = new JoiaDAO();
-$joias = $joiaDAO->consultarJoias();
 ?>
 
 <h2>Cadastro de Produto</h2>
@@ -26,8 +24,17 @@ $joias = $joiaDAO->consultarJoias();
     <label for="quantidade" class="form-label">Quantidade:</label>
     <input type="text" required class="form-control mb-4" name="quantidade">
 
-    <label for="desccurta" class="form-label">Descrição Curta:</label>
-    <input type="text" required class="form-control mb-4" name="desccurta">
+    <label for="descricao_tecnica" class="form-label">Descrição Tecnica:</label>
+    <textarea name="descricao_tecnica" required id="descricao" class="form-control" cols="30" rows="10"></textarea>
+
+    <label for="descricao_produto" class="form-label">Descrição do Produto:</label>
+    <textarea name="descricao_produto" required id="descricao" class="form-control" cols="30" rows="10"></textarea>
+
+    <label for="em_oferta">Em Oferta:</label>
+    <input type="checkbox" id="em_oferta" name="em_oferta" value="1" >
+
+    <label for="valor_oferta">Valor da Oferta:</label>
+    <input type="text" id="valor_oferta" name="valor_oferta" class="form-control" >
 
     <label for="condicao" class="form-label">Condição:</label>
     <input type="text" required class="form-control mb-4" name="condicao">
@@ -56,8 +63,7 @@ $joias = $joiaDAO->consultarJoias();
     </select>
 
 
-    <label for="descricao" class="form-label">Descrição:</label>
-    <textarea name="descricao" required id="descricao" class="form-control" cols="30" rows="10"></textarea>
+
 
     <button class="btn btn-dark mt-4">Cadastrar</button>
 
