@@ -223,7 +223,7 @@ class ProdutoDAO
     
     public function consultarProdutosPorCategoria($idCategoria, $limit, $offset) {
         $conexao = ConexaoBD::getConexao();
-        $sql = "SELECT * FROM produtos WHERE idcategoria = :idcategoria LIMIT :limit OFFSET :offset";
+        $sql = "SELECT * FROM produto WHERE idcategoria = :idcategoria LIMIT :limit OFFSET :offset";
         $stmt = $conexao->prepare($sql);
         $stmt->bindParam(':idcategoria', $idCategoria, PDO::PARAM_INT);
         $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
@@ -234,7 +234,7 @@ class ProdutoDAO
     
     public function contarProdutosPorCategoria($idCategoria) {
         $conexao = ConexaoBD::getConexao();
-        $sql = "SELECT COUNT(*) as total FROM produtos WHERE idcategoria = :idcategoria";
+        $sql = "SELECT COUNT(*) as total FROM produto WHERE idcategoria = :idcategoria";
         $stmt = $conexao->prepare($sql);
         $stmt->bindParam(':idcategoria', $idCategoria, PDO::PARAM_INT);
         $stmt->execute();

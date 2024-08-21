@@ -21,6 +21,14 @@ body.bg-opacity-75{
 .card-item:hover {
   opacity: 0.9;
 }
+.active-category .card {
+  border: 2px solid #007bff; /* Borda azul (você pode escolher outra cor) */
+  background-color: #f8f9fa; /* Cor de fundo clara (opcional) */
+}
+
+.active-category .card-body h5 {
+  color: #007bff; /* Cor do texto para a categoria ativa */
+}
 
 
 .letra{
@@ -234,4 +242,33 @@ body.bg-opacity-75{
 
 .carousel-control-next2 {
     right: -50px; /* Ajuste a posição para a direita */
+}
+
+
+/* Estilo para as setas do carrossel */
+.carousel-control-prev-icon3,
+.carousel-control-next-icon3 {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.carousel-control-prev3,
+.carousel-control-next3 {
+  background: transparent;
+  border: 0;
+  border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2; /* Garante que as setas fiquem sobre a imagem */
+}
+
+/* Ajustar para as setas ficarem fora das imagens */
+.carousel-control-prev3 {
+    left: 0px; /* Ajuste a posição para a esquerda */
+}
+
+.carousel-control-next3 {
+    right: 0px; /* Ajuste a posição para a direita */
 }

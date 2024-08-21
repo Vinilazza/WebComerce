@@ -27,18 +27,20 @@
                 <div id="produtoCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <?php foreach ($imagens as $index => $imagem): ?>
-                            <div class="carousel-item <?= $imagem['id'] === $imagemPrincipalId ? 'active' : '' ?>">
+                            <div class="carousel-item rounded <?= $imagem['id'] === $imagemPrincipalId ? 'active' : '' ?>">
                                 <img src="data:image/png;base64,<?= base64_encode($imagem['imagem']) ?>" class="d-block w-100" alt="Imagem do produto">
                             </div>
                         <?php endforeach; ?>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#produtoCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
+                    <button class="carousel-control-prev3" type="button" data-bs-target="#produtoCarousel" data-bs-slide="prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+            </svg>
                     </button>
-                    <button class="carousel-control-next text-dark" type="button" data-bs-target="#produtoCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
+                    <button class="carousel-control-next3" type="button" data-bs-target="#produtoCarousel" data-bs-slide="next">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+            </svg>
                     </button>
                 </div>
             </div>
@@ -51,9 +53,10 @@
                     <div class="col-12 fnt-price">
                         <p style="font-size: 14px">Vendido e entregue por: <b>VLTECH INFORMATICA!</b> | Em estoque (<?=$produto['quantidade']?>)</p>
                         <?php if ($produto['em_oferta']): ?>
+
                             <h4 class="fnt-price price" style="font-size: 40px"><b>R$ <?= number_format($produto['valor_oferta'], 2, ",", ".") ?></b></h4>
                             <h6 style="font-size: 14px">À vista no PIX com até <?= round((($produto['preco'] - $produto['valor_oferta']) / $produto['preco']) * 100) ?>% OFF</h6>
-                            <span class="text-muted text-decoration-line-through price-old">R$ <?= number_format($produto['preco'], 2, ",", ".") ?></span>
+                            <span class="text-decoration-line price-old"><b>R$ <?= number_format($produto['preco'], 2, ",", ".") ?></b></span>
                         <?php else: ?>
                             <h4 class="fnt-price price" style="font-size: 40px"><b>R$ <?= number_format($produto['preco'], 2, ",", ".") ?></b></h4>
                         <?php endif; ?>

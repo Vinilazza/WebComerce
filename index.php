@@ -69,9 +69,12 @@ $totalPaginas = ceil($totalProdutos / $limit);
             ?>
                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
                     <div class="row d-flex justify-content-center hvr-shadow">
-                        <?php foreach ($chunk as $categoria): ?>
+                        <?php
+                        foreach ($chunk as $categoria):
+                            $isActive = ($categoriaSelecionada == $categoria['idcategoria']) ? 'active-category' : '';
+                        ?>
                             <div class="col-md-2 hrv hvr-shadow">
-                                <a href="index.php?categoria=<?= $categoria['idcategoria'] ?>" class="text-decoration-none text-dark">
+                                <a href="index.php?categoria=<?= $categoria['idcategoria'] ?>" class="text-decoration-none text-dark <?= $isActive ?>">
                                     <div class="card h-100 w-100 p-3 shadow-sm ">
                                         <img src="data:image/png;base64,<?= base64_encode($categoria['imagem']) ?>" class="img-fluid rounded w-100" alt="<?= htmlspecialchars($categoria['categoria']) ?>">
                                         <div class="card-body text-center">
@@ -85,6 +88,8 @@ $totalPaginas = ceil($totalProdutos / $limit);
                     </div>
                 </div>
             <?php endforeach; ?>
+
+
         </div>
         <button class="carousel-control-prev2" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
             <span class="carousel-control-prev-icon2" aria-hidden="true"></span>
@@ -110,7 +115,7 @@ $totalPaginas = ceil($totalProdutos / $limit);
                 <a href="paginaproduto.php?idproduto=<?= $p['idproduto'] ?>" class="text-decoration-none text-dark">
                     <div class="card h-100 w-100 position-relative card-item hvr-shadow">
                         <!-- Desconto -->
-                        <div class="badge bg-danger position-absolute top-0 start-0 m-2">10% OFF</div>
+                        <div class="badge bg-danger position-absolute top-0 start-0 m-2"><?= round((($p['preco'] - $p['valor_oferta']) / $p['preco']) * 100) ?>% OFF</div>
 
                         <!-- Imagem do Produto -->
                         <img src="data:image/png;base64,<?= base64_encode($imagem) ?>" class="card-img-top img-barbie" alt="...">
@@ -118,8 +123,8 @@ $totalPaginas = ceil($totalProdutos / $limit);
                         <div class="card-body">
                             <h5 class="card-title"><?= $p['nome'] ?></h5>
                             <!-- Preço antigo -->
-                            <span class="text-muted text-decoration-line-through price-old">R$ <?= number_format(($p['preco'] * 1.1), 2, ",", ".") ?></span><br>
-                            <span class="price">R$ <?= number_format($p['preco'], 2, ",", ".") ?></span><br>
+                            <span class="text-muted text-decoration-line-through price-old">R$ <?= number_format(($p['preco']), 2, ",", ".") ?></span><br>
+                            <span class="price">R$ <?= number_format($p['valor_oferta'], 2, ",", ".") ?></span><br>
                             <span class="text-secondary avista">À Vista no PIX</span>
                             <!-- Botão de Comprar -->
                             <a href="paginaproduto.php?idproduto=<?= $p['idproduto'] ?>" class="btn-buy text-decoration-none mt-1">Comprar</a>

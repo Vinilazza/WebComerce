@@ -116,7 +116,7 @@ $cart_count = count($_SESSION['carrinho']);
                                         foreach ($categorias as $categoria) {
                                             $id = $categoria['idcategoria'];
                                             $nome = $categoria['categoria'];
-                                            echo "<li><a class='dropdown-item' href='/categoria/$id' id='$id'>$nome</a></li>";
+                                            echo "<li><a class='dropdown-item' href='index.php?categoria=$id' id='$id'>$nome</a></li>";
                                         }
                                     }
                                     ?>
