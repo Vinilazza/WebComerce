@@ -16,7 +16,6 @@
         $produtos = $produtoDAO->consultarPorChave($_GET['chave']);
     }else
         $produtos = $produtoDAO->consultarProdutos();
-
     if (isset($mensagem)){
 ?>  
     <div class="alert alert-primary mb-5" role="alert">
@@ -30,6 +29,7 @@
         </div>
 <?php
 }
+
 
 ?>
 
@@ -47,9 +47,11 @@
 
     <table>
         <tr>            
+            <th>Imagem</th>
             <th>ID</th>
             <th>Nome do produto</th>
-            <th>Preço</th>
+            <th>Preço a vista</th>
+            <th>Preço a prazo</th>
             <th></th>
         </tr>
                 
@@ -58,8 +60,14 @@
             foreach($produtos as $produto){
                 include("../../componentes/produto.php");
             }
+        }  else {?>
+            <tr>
+                <td>Não foi encontrado produtos</td>
+            </tr>
+        <?php
         }
         ?>
+        
 
     </table>    
 

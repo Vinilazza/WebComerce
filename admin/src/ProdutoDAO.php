@@ -5,13 +5,26 @@ require_once "funcao.php";
 class ProdutoDAO
 {
 
-    public function consultarProdutos()
+    public function consultarProdutos() {
+        $conexao = ConexaoBD::getConexao();
+        $sql = "SELECT p.idproduto, p.nome, p.preco_avista, p.preco_parcelado, i.imagem
+        FROM produto p
+        LEFT JOIN produto_imagens i ON p.idproduto = i.idproduto AND i.principal = 1";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    function consultarPorChave($chave)
     {
         $conexao = ConexaoBD::getConexao();
-        $sql = 'SELECT * FROM produto';
-        $resultado = $conexao->query($sql);
-        return $resultado->fetchAll(PDO::FETCH_ASSOC);
+        $sql = "SELECT p.idproduto, p.nome, p.preco_avista, p.preco_parcelado, i.imagem
+        FROM produto p
+        LEFT JOIN produto_imagens i ON p.idproduto = i.idproduto AND i.principal = 1 where nome like '%$chave%'";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
     public function consultarPrimeiraImagem($idproduto)
     {
@@ -102,16 +115,6 @@ class ProdutoDAO
     }
     
 
-    function consultarPorChave($chave)
-    {
-        $conexao = ConexaoBD::getConexao();
-
-        $sql = "SELECT * FROM produto where nome like'%$chave%'";
-
-        $resultado = $conexao->query($sql);
-
-        return $resultado->fetchAll(PDO::FETCH_ASSOC);
-    }
 
     public function consultarProdutoPorID($id)
     {

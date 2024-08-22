@@ -54,14 +54,14 @@
                         <p style="font-size: 14px">Vendido e entregue por: <b>VLTECH INFORMATICA!</b> | Em estoque (<?=$produto['quantidade']?>)</p>
                         <?php if ($produto['em_oferta']): ?>
 
-                            <h4 class="fnt-price price" style="font-size: 40px"><b>R$ <?= number_format($produto['valor_oferta'], 2, ",", ".") ?></b></h4>
-                            <h6 style="font-size: 14px">À vista no PIX com até <?= round((($produto['preco'] - $produto['valor_oferta']) / $produto['preco']) * 100) ?>% OFF</h6>
-                            <span class="text-decoration-line price-old"><b>R$ <?= number_format($produto['preco'], 2, ",", ".") ?></b></span>
+                            <h4 class="fnt-price price" style="font-size: 40px"><b>R$ <?= number_format($produto['preco_avista'], 2, ",", ".") ?></b></h4>
+                            <h6 style="font-size: 14px">À vista no PIX com até <?= round((($produto['preco_parcelado'] - $produto['preco_avista']) / $produto['preco_parcelado']) * 100) ?>% OFF</h6>
+                            <span class="text-decoration-line price-old"><b>R$ <?= number_format($produto['preco_parcelado'], 2, ",", ".") ?></b></span>
                         <?php else: ?>
-                            <h4 class="fnt-price price" style="font-size: 40px"><b>R$ <?= number_format($produto['preco'], 2, ",", ".") ?></b></h4>
+                            <h4 class="fnt-price price" style="font-size: 40px"><b>R$ <?= number_format($produto['preco_avista'], 2, ",", ".") ?></b></h4>
                         <?php endif; ?>
-                        <h6 style="font-size: 14px">Em até <?=$produto['parcelas']?>x de R$ <b><?= number_format($produto['preco']/$produto['parcelas'], 2, ",", ".") ?></b> sem juros no cartão</h6>
-                        <h6 style="font-size: 14px">Ou em 1x no cartão com até 5% OFF</h6>
+                        <h6 style="font-size: 14px">Em até <?=$produto['parcelas']?>x de R$ <b><?= number_format($produto['preco_parcelado']/$produto['parcelas'], 2, ",", ".") ?></b> sem juros no cartão</h6>
+                        <h6 style="font-size: 14px">Ou em 1x no cartão com até <?= round((($produto['preco_parcelado'] - $produto['preco_avista']) / $produto['preco_parcelado']) * 100) ?>% OFF</h6>
                     </div>
                 </div>
                 <div class="my-5">
