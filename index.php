@@ -118,7 +118,7 @@ $totalPaginas = ceil($totalProdutos / $limit);
                         <div class="badge bg-danger position-absolute top-0 start-0 m-2"><?= round((($p['preco'] - $p['valor_oferta']) / $p['preco']) * 100) ?>% OFF</div>
 
                         <!-- Imagem do Produto -->
-                        <img src="data:image/png;base64,<?= base64_encode($imagem) ?>" class="card-img-top img-barbie" alt="...">
+                        <img src="data:image/png;base64,<?= base64_encode($imagem) ?>" class="card-img-top img-barbie" data-bs-target="adult" met alt="...">
 
                         <div class="card-body">
                             <h5 class="card-title"><?= $p['nome'] ?></h5>

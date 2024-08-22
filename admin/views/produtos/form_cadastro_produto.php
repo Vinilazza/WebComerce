@@ -2,11 +2,13 @@
 
 include "../layout/topo.php";
 require_once('../../src/CategoriaDAO.php');
-require_once('../../src/JoiaDAO.php');
+require_once('../../src/ValorProdutoDAO.php');
 
 $categoriaDAO = new CategoriaDAO();
 $categorias = $categoriaDAO->consultarCategorias();
 
+$valorProdutoDAO = new ValorProdutoDAO();
+$margens = $valorProdutoDAO->listarMargens();
 ?>
 
 <h2>Cadastro de Produto</h2>
@@ -15,8 +17,20 @@ $categorias = $categoriaDAO->consultarCategorias();
     <label for="nome" class="form-label">Nome:</label>
     <input type="text" required class="form-control mb-4" name="nome">
 
-    <label for="preco" class="form-label">Preço:</label>
-    <input type="text" required class="form-control mb-4" name="preco">
+    <label for="custo_produto" class="form-label">Custo do Produto:</label>
+    <input type="text" required class="form-control mb-4" name="custo_produto">
+
+    <label for="margem_produto" class="form-label">Margem de Lucro:</label>
+    <select type="text" required class="form-select mb-4" name="margem_produto">
+        <option value="" disabled selected>Selecione a margem</option>
+        <?php
+        foreach ($margens as $margem) {
+            $id = $margem['id'];
+            $nome = $margem['nome'];
+            echo "<option value='$id'>$nome</option>";
+        }
+        ?>
+    </select>
 
     <label for="parcelas" class="form-label">Parcelas:</label>
     <input type="text" required class="form-control mb-4" name="parcelas">
@@ -24,20 +38,18 @@ $categorias = $categoriaDAO->consultarCategorias();
     <label for="quantidade" class="form-label">Quantidade:</label>
     <input type="text" required class="form-control mb-4" name="quantidade">
 
-    <label for="descricao_tecnica" class="form-label">Descrição Tecnica:</label>
+    <label for="descricao_tecnica" class="form-label">Descrição Técnica:</label>
     <textarea name="descricao_tecnica" required id="descricao" class="form-control" cols="30" rows="10"></textarea>
 
     <label for="descricao_produto" class="form-label">Descrição do Produto:</label>
     <textarea name="descricao_produto" required id="descricao" class="form-control" cols="30" rows="10"></textarea>
 
-    <label for="em_oferta">Em Oferta:</label>
-    <input type="checkbox" id="em_oferta" name="em_oferta" value="1" >
-
-    <label for="valor_oferta">Valor da Oferta:</label>
-    <input type="text" id="valor_oferta" name="valor_oferta" class="form-control" >
-
     <label for="condicao" class="form-label">Condição:</label>
-    <input type="text" required class="form-control mb-4" name="condicao">
+    <select name="condicao" required class="form-select mb-4">
+        <option value="" disabled selected>Selecione a condição</option>
+        <option value="Novo">Novo</option>
+        <option value="Usado">Usado</option>
+    </select>
 
     <label for="tipo" class="form-label">Categoria:</label>
     <select type="text" required class="form-select mb-4" name="tipo">
@@ -62,11 +74,7 @@ $categorias = $categoriaDAO->consultarCategorias();
         <option value="" disabled selected>Selecione uma imagem</option>
     </select>
 
-
-
-
     <button class="btn btn-dark mt-4">Cadastrar</button>
-
 
 </form>
 
@@ -85,7 +93,7 @@ $categorias = $categoriaDAO->consultarCategorias();
             reader.onload = function(e) {
                 var img = document.createElement('img');
                 img.src = e.target.result;
-                img.style.width = '100px'; // Ajuste o tamanho conforme necessário
+                img.style.width = '100px';
                 img.style.marginRight = '10px';
 
                 var label = document.createElement('label');
@@ -103,7 +111,6 @@ $categorias = $categoriaDAO->consultarCategorias();
         });
     });
 </script>
-
 
 <?php
 include "../layout/rodape.php";

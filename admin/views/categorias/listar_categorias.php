@@ -13,10 +13,18 @@ if (isset($_POST['delete'])) {
 }
 
 if (isset($_POST['edit'])) {
-    $idcategoria = $_POST['idcategoria'];
-    $nomeCategoria = $_POST['nome_categoria'];
-    $categoriaDAO->editarCategoria($idcategoria, $nomeCategoria);
-    header("Location: listar_categorias.php");
+    if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+        $imagem = file_get_contents($_FILES['imagem']['tmp_name']);
+        $idcategoria = $_POST['idcategoria'];
+        $nomeCategoria = $_POST['nome_categoria'];
+        $categoriaDAO->editarCategoria($idcategoria, $nomeCategoria, $imagem);
+        header("Location: listar_categorias.php");
+
+    } else {
+        // Tratamento de erro, caso o upload não tenha sido bem-sucedido
+        die("Erro no upload da imagem.");
+    }
+
     exit;
 }
 
@@ -67,6 +75,8 @@ ob_end_flush();
                     <div class="form-group">
                         <label for="nome_categoria">Nome da Categoria</label>
                         <input type="text" class="form-control" name="nome_categoria" id="nomeCategoriaToEdit" value="">
+                        <label for="imagem" class="form-label">Imagem da Categoria</label>
+            <input type="file" class="form-control" id="imagem" name="imagem" accept="image/*" required>
                     </div>
                     <button type="submit" name="edit" class="btn btn-primary">Salvar Alterações</button>
                 </form>

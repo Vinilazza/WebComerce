@@ -127,10 +127,10 @@ class ProdutoDAO
     public function cadastrar($dados)
     {
         $conexao = ConexaoBD::getConexao();
-
+    
         // Extrair dados do formulário
         $nome = $dados['nome'];
-        $preco = $dados['preco'];
+        $custoProduto = $dados['custo_produto']; // Este campo agora representa o custo do produto
         $parcelas = $dados['parcelas'];
         $categoria = $dados['tipo'];
         $descricaotecnica = $dados['descricao_tecnica'];
@@ -138,18 +138,26 @@ class ProdutoDAO
         $condicao = $dados['condicao'];
         $quantidade = $dados['quantidade'];
         $imagemPrincipal = $dados['imagem_principal'];
-        $emoferta = isset($dados['em_oferta']) ? 1 : 0;
-        $valoroferta = $dados['valor_oferta'];
-
-
+        $margem_produto_id = $dados['margem_produto_id']; // ID da margem selecionada
+    
+        // Pega a margem selecionada
+        $valorProdutoDAO = new ValorProdutoDAO();
+        $margem = $valorProdutoDAO->consultarMargemPorID($margem_produto_id)['margem'];
+    
+        // Calcula os preços
+        $preco_avista = $custoProduto * (1 + $margem / 100);
+        $preco_parcelado = $preco_avista * 1.05; // Ajuste conforme sua lógica
+    
         // Inserir o produto na tabela 'produto'
-        $sql = "INSERT INTO produto (nome, parcelas, idcategoria, descricao_tecnica, descricao_produto, preco, em_oferta,valor_oferta, quantidade, condicao)
-                VALUES ('$nome', $parcelas, $categoria, '$descricaotecnica','$descricaoproduto',  $preco, '$emoferta','$valoroferta', '$quantidade', '$condicao')";
+        $sql = "INSERT INTO produto 
+                (nome, parcelas, idcategoria, descricao_tecnica, descricao_produto, margem_aplicada, preco_avista, preco_parcelado, quantidade, condicao, custo_produto, margem_produto_id)
+                VALUES 
+                ('$nome', $parcelas, $categoria, '$descricaotecnica', '$descricaoproduto', $margem , $preco_avista, $preco_parcelado, '$quantidade', '$condicao', $custoProduto, $margem_produto_id)";
         $conexao->exec($sql);
-
+    
         // Recuperar o ID do produto recém-cadastrado
         $idproduto = $conexao->lastInsertId();
-
+    
         // Verificar se há imagens enviadas
         if (!empty($_FILES['imagens']['tmp_name'][0])) {
             foreach ($_FILES['imagens']['tmp_name'] as $key => $tmp_name) {
@@ -158,6 +166,7 @@ class ProdutoDAO
             }
         }
     }
+    
 
 
     public function editar($dados, $id)
