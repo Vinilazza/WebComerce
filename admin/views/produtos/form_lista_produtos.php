@@ -8,7 +8,7 @@
     
     $produtoDAO = new ProdutoDAO();
     if(isset($_GET['idproduto'])){
-        $ProdutoDAO->remover($_GET['idproduto']);
+        $produtoDAO->deletar($_GET['idproduto']);
         $mensagem = "Produto removido com sucesso";
     }
 
