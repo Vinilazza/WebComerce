@@ -137,8 +137,12 @@ include __DIR__ . '/../../views/login/validar_sessao.php';
             <li class="mb-2">
               <a href="<?php echo $global; ?>/margem/cadastrar_margem.php">Cadastrar margem</a>
             </li>
-            <li>
+
+            <li class="mb-2">
               <a href="<?php echo $global; ?>/margem/listar_margens.php">Listar margem</a>
+            </li>
+            <li class="">
+              <a href="<?php echo $global; ?>/banners/banner.php">Banners</a>
             </li>
           </ul>
         </li>

@@ -40,9 +40,23 @@ body.bg-opacity-75{
     background-color: rgb(10, 29, 56);
 } */
 
-.img-slide{
-    height: 350px;
-    object-fit: cover;
+.img-slide {
+  width: 100%;          /* Faz a imagem ocupar toda a largura do contêiner */
+  max-height: 350px;    /* Define a altura máxima da imagem */
+  object-fit: cover;    /* Mantém a proporção da imagem e recorta se necessário */
+  object-position: center; /* Centraliza a imagem */
+}
+
+@media (max-width: 768px) { /* Ajustes para telas menores */
+  .img-slide {
+      max-height: 250px; /* Reduz a altura máxima para telas menores */
+  }
+}
+
+@media (max-width: 576px) { /* Ajustes para telas bem pequenas */
+  .img-slide {
+      max-height: 200px; /* Ainda mais redução na altura máxima */
+  }
 }
 
 
