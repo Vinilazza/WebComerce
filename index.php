@@ -42,17 +42,18 @@ $totalPaginas = ceil($totalProdutos / $limit);
     <div class="carousel-inner">
         <?php foreach ($banners as $index => $banner): ?>
             <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+            <a href="<?= htmlspecialchars($banner['link']) ?>" class="">
+            
                 <img src="data:image/jpeg;base64,<?= base64_encode($banner['imagem']) ?>" class="img-slide img1-position d-block w-100" alt="<?= htmlspecialchars($banner['titulo']) ?>">
                 <?php if ($banner['titulo'] || $banner['link']): ?>
                     <div class="carousel-caption d-none d-md-block">
                         <?php if ($banner['titulo']): ?>
-                            <h5><?= htmlspecialchars($banner['titulo']) ?></h5>
                         <?php endif; ?>
                         <?php if ($banner['link']): ?>
-                            <a href="<?= htmlspecialchars($banner['link']) ?>" class="btn btn-primary">Saiba Mais</a>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
+                            </a>    
             </div>
         <?php endforeach; ?>
     </div>

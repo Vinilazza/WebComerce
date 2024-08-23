@@ -286,3 +286,48 @@ body.bg-opacity-75{
 .carousel-control-next3 {
     right: 0px; /* Ajuste a posição para a direita */
 }
+
+/* Search */
+
+.form-control.search-bar {
+  width: 450px;
+}
+@media (max-width: 576px) { 
+  .form-control.search-bar {
+    width: 100%;
+  }
+  .formSearch {
+    width: 100%;
+  }
+  .hvr-underline-from-left {
+    box-shadow: none !important;
+  }
+  li.nav-item {
+    height: 50px;
+  }
+  .navbar-collapse {
+    overflow: hidden; /* Evita que o conteúdo transborde */
+}
+
+.dropdown-menu {
+    margin-top: 10px; /* Ajusta a margem superior para o menu dropdown */
+}
+ }
+
+@media (max-width: 768px) { 
+
+ }
+
+@media (max-width: 992px) { 
+  .navbar .form-inline {
+    display: none; /* Oculta a barra de busca em dispositivos móveis */
+}
+ }
+
+@media (max-width: 1200px) { 
+
+ }
+
+@media (max-width: 1400px) { 
+
+ }

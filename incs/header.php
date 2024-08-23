@@ -31,45 +31,45 @@ $cart_count = count($_SESSION['carrinho']);
 </head>
 
 <body class="bg-opacity-75">
-    <header class=" text-dark">
-        <div class="container d-flex justify-content-between  py-2">
-
-            <div class="d-flex-justify-content-start">
-                <div class="letra col-2 d-flex">
-                    <a href="/index.php" class="hrv"> <img src="img/icon.png" class="logo rounded me-2" alt="logotipo do site"></a>
-                    <div class="d-flex align-items-center">
-                        <a href="/index.php" class="hrv text-decoration-none">
-                            <h4 class=" lg2">
-                                <span class="vltech">VL</span><span class="tech">TECH</span>
-                                <span class="informatica">INFORMATICA</span>
-                            </h4>
-                        </a>
-                    </div>
+    <!-- NAV - Busca, Logo e Carrinho -->
+    <!-- NAV - Busca, Logo e Carrinho -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+        <div class="container d-flex">
+            <!-- Logo -->
+            <div class="letra col-2 d-flex">
+                <a href="/index.php" class="hrv">
+                    <img src="img/icon.png" class="logo rounded me-2" alt="logotipo do site">
+                </a>
+                <div class="d-flex align-items-center">
+                    <a href="/index.php" class="hrv text-decoration-none">
+                        <h4 class="lg2">
+                            <span class="vltech">VL</span><span class="tech">TECH</span>
+                            <span class="informatica">INFORMATICA</span>
+                        </h4>
+                    </a>
                 </div>
             </div>
 
-
-            <div class="d-flex justify-content-center">
+            <!-- Formulário de Busca - visível apenas em telas maiores -->
+            <div class="d-flex justify-content-center col-4 d-none d-lg-flex">
                 <div class="d-flex align-items-center">
                     <form action="search.php" method="GET">
-
                         <div class="form shadow-sm">
-                            <input type="text" class="form-control form-input-sm" style="width: 450px;" placeholder="Buscar produtos, marcas e muito mais...">
-                            <span class="left-pan"><button class="btn btn-transparent btn-sm">
+                            <input type="text" class="form-control form-input-sm search-bar" placeholder="Buscar produtos, marcas e muito mais...">
+                            <span class="left-pan">
+                                <button class="btn btn-transparent btn-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                                     </svg>
                                 </button>
                             </span>
                         </div>
-
                     </form>
                 </div>
             </div>
 
-
-
-            <div class="d-flex justify-content-end">
+            <!-- Carrinho - visível apenas em telas maiores -->
+            <div class="d-flex justify-content-end d-none d-lg-flex">
                 <div class="d-flex align-items-center">
                     <a href="carrinho.php" class="hrv text-decoration-none text-dark position-relative">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
@@ -89,60 +89,86 @@ $cart_count = count($_SESSION['carrinho']);
                 </div>
             </div>
 
+            <!-- Toggler para dispositivos móveis -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HEADER - Categorias -->
+    <!-- HEADER - Categorias -->
+    <header class="navbar navbar-expand-lg navbar-light shadow-sm">
+        <div class="collapse navbar-collapse" id="navbarHeader">
+            <ul class="navbar-nav">
+                <!-- Remova a barra de busca daqui se quiser apenas no topo -->
 
 
+                <li class="nav-item d-lg-none me-2 d-flex align-items-center ">
+                    <div class="justify-content-center col-4 w-100">
+                        <div class="d-flex align-items-center">
+                            <form action="search.php" method="GET" class="formSearch">
+                                <div class="form shadow-sm">
+                                    <input type="text" class="form-control form-input-sm search-bar" placeholder="Buscar produtos, marcas e muito mais...">
+                                    <span class="left-pan">
+                                        <button class="btn btn-transparent btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                            </svg>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item d-lg-none p-2 me-2 hvr-underline-from-left d-flex align-items-center">
+                    <a href="#" class="text-decoration-none text-dark ">Ofertas</a>
+                </li>
+                <li class="nav-item d-lg-none p-2 me-2 hvr-underline-from-left d-flex align-items-center">
+                    <a href="#" class="text-decoration-none text-dark">Computadores</a>
+                </li>
+                <li class="nav-item d-lg-none p-2 me-2 hvr-underline-from-left d-flex  align-items-center">
+                    <a href="#" class="text-decoration-none text-dark">Perifericos</a>
+                </li>
+                <li class="nav-item d-lg-none p-2 me-2 hvr-underline-from-left d-flex  align-items-center">
+                    <a href="#" class="text-decoration-none text-dark">Rede</a>
+                </li>
+                <!-- Categorias -->
+                <li class="nav-item dropdown d-lg-none p-2 me-2">
+                    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categorias
+                    </a>
+                    <ul class="dropdown-menu aclass" aria-labelledby="navbarDropdownMenuLink">
+                        <?php
+                        if (sizeof($categorias) > 0) {
+                            foreach ($categorias as $categoria) {
+                                $id = $categoria['idcategoria'];
+                                $nome = $categoria['categoria'];
+                                echo "<li><a class='dropdown-item' href='index.php?categoria=$id' id='$id'>$nome</a></li>";
+                            }
+                        }
+                        ?>
+                    </ul>
+                </li>
+                <li class="nav-item d-lg-none p-2 me-2 hvr-underline-from-left d-flex  align-items-center">
+                    <a href="#" class="nav-link text-decoration-none text-dark">Suporte Tecnico</a>
+                </li>
+                <li class="nav-item d-lg-none p-2 me-2 hvr-underline-from-left d-flex  align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart me-2" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                        </svg>
+                    <a href="#" class="nav-link text-decoration-none text-dark">Carrinho (<?php echo $cart_count; ?>)</a>
+                </li>
+                <li class="nav-item d-lg-none p-2 me-2 hvr-underline-from-left d-flex  align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill me-2" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                        </svg>
+                    <a href="login.php" class="nav-link text-dark">Login</a>
+                </li>
+
+                
+            </ul>
 
         </div>
-
-
-        <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
-            <div class="container d-flex ">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="justify-content-center">
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-
-                        <ul class="navbar-nav d-flex align-items-center ">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Categorias
-                                </a>
-
-
-                                <ul class="dropdown-menu aclass" aria-labelledby="navbarDropdownMenuLink">
-                                    <?php
-                                    if (sizeof($categorias) > 0) {
-                                        foreach ($categorias as $categoria) {
-                                            $id = $categoria['idcategoria'];
-                                            $nome = $categoria['categoria'];
-                                            echo "<li><a class='dropdown-item' href='index.php?categoria=$id' id='$id'>$nome</a></li>";
-                                        }
-                                    }
-                                    ?>
-                                </ul>
-                            </li>
-                            <li class="nav-item p-2 me-2 hvr-underline-from-left ">
-                                <a href="#" class="text-decoration-none text-dark ">Ofertas</a>
-                            </li>
-
-                            <li class="nav-item p-2 me-2 hvr-underline-from-left">
-                                <a href="#" class="text-decoration-none text-dark">Computadores</a>
-                            </li>
-                            <li class="nav-item p-2 me-2 hvr-underline-from-left">
-                                <a href="#" class="text-decoration-none text-dark">Perifericos</a>
-                            </li>
-                            <li class="nav-item p-2 me-2 hvr-underline-from-left">
-                                <a href="#" class="text-decoration-none text-dark">Rede</a>
-                            </li>
-                            <li class="nav-item p-2 me-2 hvr-underline-from-left">
-                                <a href="#" class="text-decoration-none text-dark">Suporte Tecnico</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-
-            </div>
-        </nav>
     </header>
