@@ -7,6 +7,26 @@ body.bg-opacity-75{
     background-color: #fafafb;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Para uma compatibilidade total */
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+    -webkit-appearance: none; /* Chrome, Safari, Edge, Opera */
+    appearance: none;
+    margin: 0; /* Remove qualquer margem padrão */
+}
+
 /* Card and Search Bar */
 .form-control:focus {
   border-color: #6b6f6c !important;
@@ -312,6 +332,8 @@ body.bg-opacity-75{
 .dropdown-menu {
     margin-top: 10px; /* Ajusta a margem superior para o menu dropdown */
 }
+
+
  }
 
 @media (max-width: 768px) { 

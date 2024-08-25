@@ -26,7 +26,7 @@ if ($categoriaSelecionada) {
     $produtos = $produtoDAO->consultarProdutosPorCategoria($categoriaSelecionada, $limit, $offset);
     $totalProdutos = $produtoDAO->contarProdutosPorCategoria($categoriaSelecionada);
 } else {
-    $produtos = $produtoDAO->consultarProdutos($limit, $offset);
+    $produtos = $produtoDAO->consultarProdutos();
     $totalProdutos = $produtoDAO->contarProdutos();
 }
 

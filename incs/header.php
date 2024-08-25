@@ -100,9 +100,43 @@ $cart_count = count($_SESSION['carrinho']);
     <!-- HEADER - Categorias -->
     <header class="navbar navbar-expand-lg navbar-light shadow-sm">
         <div class="collapse navbar-collapse" id="navbarHeader">
+            <div class="container d-flex align-items-center" style="height: 35px;">
+            <li class="nav-item d-none d-lg-block dropdown me-2 p-2" style="box-shadow: 0 0 1px rgba(0, 0, 0, 0);">
+                    <a class="text-decoration-none dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categorias
+                    </a>
+                    <ul class="dropdown-menu aclass" aria-labelledby="navbarDropdownMenuLink2">
+                        <?php
+                        if (sizeof($categorias) > 0) {
+                            foreach ($categorias as $categoria) {
+                                $id = $categoria['idcategoria'];
+                                $nome = $categoria['categoria'];
+                                echo "<li><a class='dropdown-item' href='index.php?categoria=$id' id='$id'>$nome</a></li>";
+                            }
+                        }
+                        ?>
+                    </ul>
+                </li>
+                <li class="nav-item p-2 d-none d-lg-block me-2 hvr-underline-from-left d-flex align-items-center">
+                    <a href="#" class="text-decoration-none text-dark ">Ofertas</a>
+                </li>
+                <li class="nav-item d-none d-lg-block  p-2 me-2 hvr-underline-from-left d-flex align-items-center">
+                    <a href="#" class="text-decoration-none text-dark">Computadores</a>
+                </li>
+                <li class="nav-item d-none d-lg-block p-2 me-2 hvr-underline-from-left d-flex  align-items-center">
+                    <a href="#" class="text-decoration-none text-dark">Perifericos</a>
+                </li>
+                <li class="nav-item d-none d-lg-block p-2 me-2 hvr-underline-from-left d-flex  align-items-center">
+                    <a href="#" class="text-decoration-none text-dark">Rede</a>
+                </li>
+                <!-- Categorias -->
+
+                <li class="nav-item p-2 d-none d-lg-block me-2 hvr-underline-from-left d-flex  align-items-center">
+                    <a href="#" class="text-decoration-none text-decoration-none text-dark">Suporte Tecnico</a>
+                </li>
+            </div>
             <ul class="navbar-nav">
                 <!-- Remova a barra de busca daqui se quiser apenas no topo -->
-
 
                 <li class="nav-item d-lg-none me-2 d-flex align-items-center ">
                     <div class="justify-content-center col-4 w-100">
@@ -155,19 +189,19 @@ $cart_count = count($_SESSION['carrinho']);
                     <a href="#" class="nav-link text-decoration-none text-dark">Suporte Tecnico</a>
                 </li>
                 <li class="nav-item d-lg-none p-2 me-2 hvr-underline-from-left d-flex  align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart me-2" viewBox="0 0 16 16">
-                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                        </svg>
-                    <a href="#" class="nav-link text-decoration-none text-dark">Carrinho (<?php echo $cart_count; ?>)</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart me-2" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                    </svg>
+                    <a href="/carrinho.php" class="nav-link text-decoration-none text-dark">Carrinho (<?php echo $cart_count; ?>)</a>
                 </li>
                 <li class="nav-item d-lg-none p-2 me-2 hvr-underline-from-left d-flex  align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill me-2" viewBox="0 0 16 16">
-                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                        </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill me-2" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                    </svg>
                     <a href="login.php" class="nav-link text-dark">Login</a>
                 </li>
 
-                
+
             </ul>
 
         </div>

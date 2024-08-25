@@ -4,31 +4,61 @@ require_once "admin/src/ProdutoDAO.php";
 
 $idproduto = $_REQUEST['idproduto'] ?? null;
 $operacao = $_REQUEST['operacao'] ?? null;
+$quantidade = $_REQUEST['quantidade'] ?? null;
 
 $carrinho = $_SESSION['carrinho'] ?? [];
 
 if ($operacao == "inserir") {
     $existe = false;
+    
+    // Consultar o produto para verificar a quantidade em estoque
+    $produtoDAO = new ProdutoDAO();
+    $produto = $produtoDAO->consultarProdutoPorId($idproduto);
+    $estoqueAtual = $produto['quantidade']; // Supondo que 'estoque' seja o campo no banco de dados
+    
     foreach ($carrinho as $i => $item) {
         if ($idproduto == $item['idproduto']) {
-            $item['quantidade'] += 1;
-            $carrinho[$i] = $item;
+            if ($item['quantidade']<= $estoqueAtual) { // Verifica se tem estoque suficiente
+                $carrinho[$i] = $item;
+            } else {
+                echo "<script>document.querySelectorAll('.btn-add').disabled = true</script>";
+            }
             $existe = true;
         }
     }
 
-    if ($existe == false) {
-        $item['idproduto'] = $idproduto;
-        $item['quantidade'] = 1;
-        $carrinho[] = $item;
+    if (!$existe) {
+        if ($estoqueAtual > 0) { // Verifica se o estoque é suficiente para adicionar o item
+            $item['idproduto'] = $idproduto;
+            $item['quantidade'] = 1;
+            $carrinho[] = $item;
+        } else {
+            // Mensagem de erro ou manipulação do caso sem estoque
+            echo "<script>alert('Produto fora de estoque.');</script>";
+        }
     }
-} else
-    if ($operacao == "remover") {
-
-    for ($i = 0; $i <= array_key_last($carrinho); $i++) {
-        $item = $carrinho[$i] ?? null;
-        if ($item != null && $item['idproduto'] == $idproduto) {
+} elseif ($operacao == "remover") {
+    foreach ($carrinho as $i => $item) {
+        if ($item['idproduto'] == $idproduto) {
             unset($carrinho[$i]);
+            break;
+        }
+    }
+} elseif ($operacao == "atualizar" && $quantidade !== null) {
+    $produtoDAO = new ProdutoDAO();
+    $produto = $produtoDAO->consultarProdutoPorId($idproduto);
+    $estoqueAtual = $produto['quantidade'];
+
+    foreach ($carrinho as $i => $item) {
+        if ($item['idproduto'] == $idproduto) {
+            if ($quantidade <= $estoqueAtual) { // Verifica se a quantidade solicitada não excede o estoque
+                $item['quantidade'] = (int)$quantidade;
+                $carrinho[$i] = $item;
+            } else {
+                // Mensagem de erro ou manipulação do caso sem estoque
+                echo "<script>alert('Quantidade solicitada excede o estoque disponível.');</script>";
+            }
+            break;
         }
     }
 }
@@ -51,7 +81,7 @@ $_SESSION['carrinho'] = $carrinho;
                             </svg>
                             <h1 style="font-size: 18px;">Monte um carrinho de compras!</h1>
                             <h1 style="font-size: 16px;">Adicione produtos e tenha frete grátis.</h1>
-                            <button class="btn btn-primary " style="padding: 10px 26px;width:100%"><a href="/produtos.php" class="text-decoration-none text-white">Encontrar produtos!</a></button>
+                            <button class="btn btn-primary " style="padding: 10px 26px;width:100%"><a href="/index.php" class="text-decoration-none text-white">Encontrar produtos!</a></button>
                         </div>
 
                     </div>
@@ -88,9 +118,9 @@ $_SESSION['carrinho'] = $carrinho;
                             $produtoItem = $produtoDAO->consultarProdutoPorId($item['idproduto']);
                             $imagem = $produtoDAO->consultarImagemPrincipal($item['idproduto']);
 
-                            $subtotal = $item['quantidade'] * $produtoItem['preco'];
+                            $subtotal = $item['quantidade'] * $produtoItem['preco_avista'];
                             $total += $subtotal;
-                            $item['preco'] = $produtoItem['preco'];
+                            $item['preco_avista'] = $produtoItem['preco_avista'];
                             $carrinho[$i] = $item;
                         ?>
                             <section class="border-bottom pb-4 mb-4 d-flex">
@@ -98,15 +128,24 @@ $_SESSION['carrinho'] = $carrinho;
                                     <img src="data:image/png;base64,<?= base64_encode($imagem) ?>" class="img-fluid rounded">
                                 </div>
                                 <div class="col-9 ps-3">
-                                    <h6><?= $produtoItem['nome'] ?></h6>
-                                    <p class="text-muted mb-1">
-                                        em até <?= $produtoItem['parcelas'] ?>x de R$ <?= number_format($produtoItem['preco'] / $produtoItem['parcelas'], 2, ",", ".") ?> sem juros
-                                    </p>
-                                    <p class="mb-1">Em estoque</p>
-                                    <p class="fw-bold text-success mb-1">R$ <?= number_format($produtoItem['preco'], 2, ",", ".") ?></p>
-                                    <div class="d-flex align-items-center">
-                                        <span class="me-3">Quantidade: <?= $item['quantidade'] ?></span>
-                                        <a href="carrinho.php?idproduto=<?= $item['idproduto'] ?>&operacao=remover" class="btn btn-danger btn-sm">Remover</a>
+                                <h6><?= $produtoItem['nome'] ?></h6>
+
+                                <div class="d-flex">
+                                <a href="carrinho.php?idproduto=<?= $item['idproduto'] ?>&operacao=remover" class="text-decoration-none me-2">Excluir</a>
+                                </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="justify-content-start">
+                                        <div class="input-group" style="width: 110px;border-radius: 6px;border: 1px solid rgba(0, 0, 0, .25);">
+                                        <button class="btn btn-subtract" type="button" data-id="<?= $item['idproduto'] ?>">-</button>
+                                        <input type="number" class="form-control text-center item-quantity" style="border:none;" min="1" value="<?= $item['quantidade'] ?>">
+                                        <button class="btn btn-add" type="button" data-id="<?= $item['idproduto'] ?>">+</button>
+                                    </div>
+                                        </div>
+                                        <div class="justify-content-end">
+                                        <p class=" text-dark mb-1" style="font-size: 20px;">R$ <?= number_format($produtoItem['preco_avista'], 2, ",", ".") ?></p>
+
+                                        </div>
+
                                     </div>
                                 </div>
                             </section>
@@ -147,6 +186,42 @@ $_SESSION['carrinho'] = $carrinho;
 
 
 
+<script>
+    document.querySelectorAll(".btn-subtract").forEach(button => {
+        button.addEventListener("click", function() {
+            const quantityInput = this.closest('.d-flex').querySelector('.item-quantity');
+            let quantity = parseInt(quantityInput.value);
+            let minimum = 1;
+            if (quantity > minimum) {
+                quantity--;
+                quantityInput.value = quantity;
+                updateCart(this.dataset.id, quantity);
+            }
+        });
+    });
+
+    document.querySelectorAll(".btn-add").forEach(button => {
+        button.addEventListener("click", function() {
+            const quantityInput = this.closest('.d-flex').querySelector('.item-quantity');
+            let quantity = parseInt(quantityInput.value);
+
+            quantity++;
+            quantityInput.value = quantity;
+            updateCart(this.dataset.id, quantity);
+        });
+    });
+
+    function updateCart(productId, quantity) {
+        // Faz a requisição para atualizar o carrinho
+        fetch(`carrinho.php?operacao=atualizar&idproduto=${productId}&quantidade=${quantity}`)
+            .then(response => response.text())
+            .then(data => {
+                // Recarrega a página ou atualiza o carrinho na página sem recarregar
+                location.reload();
+            })
+            .catch(error => console.error('Erro ao atualizar o carrinho:', error));
+    }
+</script>
 
 <?php
 include "incs/footer.php";
