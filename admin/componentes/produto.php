@@ -15,6 +15,8 @@ if (!empty($produto['imagem'])) {
     <td><?php echo $produto['nome']; ?></td>
     <td><?php echo number_format($produto['preco_avista'], 2, ',', '.'); ?></td>
     <td><?php echo number_format($produto['preco_parcelado'], 2, ',', '.'); ?></td>
+    <td><?php echo $produto['visitas'] ?></td>
+
     <td>
         <a href="form_edita_produto.php?idproduto=<?php echo $produto['idproduto']; ?>" class="btn btn-primary btn-sm">Editar</a>
         <a href="?idproduto=<?php echo $produto['idproduto']; ?>" onclick="return confirm('Tem certeza que deseja remover este produto?');" class="btn btn-danger btn-sm">Excluir</a>

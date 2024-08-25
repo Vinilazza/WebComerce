@@ -52,6 +52,8 @@
             <th>Nome do produto</th>
             <th>Preço a vista</th>
             <th>Preço a prazo</th>
+            <th>Visitas</th>
+
             <th></th>
         </tr>
                 

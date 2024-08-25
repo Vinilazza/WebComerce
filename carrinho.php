@@ -2,6 +2,10 @@
 include "incs/header.php";
 require_once "admin/src/ProdutoDAO.php";
 
+require_once "admin/src/ClienteLogDAO.php";
+
+
+
 $idproduto = $_REQUEST['idproduto'] ?? null;
 $operacao = $_REQUEST['operacao'] ?? null;
 $quantidade = $_REQUEST['quantidade'] ?? null;
@@ -61,6 +65,10 @@ if ($operacao == "inserir") {
             break;
         }
     }
+}
+if(isset($_SESSION["idcliente"]) ){
+    $ClienteLog = new ClienteLogDAO();
+$ClienteLog->registrarLog($_SESSION['idcliente'], "/carrinho");
 }
 
 $_SESSION['carrinho'] = $carrinho;

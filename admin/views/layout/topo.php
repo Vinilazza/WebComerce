@@ -72,8 +72,11 @@ include __DIR__ . '/../../views/login/validar_sessao.php';
             <li class="mb-2">
               <a href="<?php echo $produtos; ?>/form_cadastro_produto.php">Cadastrar produtos</a>
             </li>
-            <li>
+            <li class="mb-2">
               <a href="<?php echo $produtos; ?>/form_lista_produtos.php">Listar produtos</a>
+            </li>
+            <li>
+              <a href="<?php echo $produtos; ?>/visitas.php">Visitas</a>
             </li>
           </ul>
         </li>
@@ -89,9 +92,10 @@ include __DIR__ . '/../../views/login/validar_sessao.php';
             <li class="mb-2">
               <a href="<?php echo $usuarios; ?>/form_cadastro_usuario.php">Cadastrar usuario</a>
             </li>
-            <li>
+            <li class="mb-2">
               <a href="<?php echo $usuarios; ?>/form_lista_usuarios.php">Listar usuarios</a>
             </li>
+
           </ul>
         </li>
         <li class="p-1">

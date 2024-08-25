@@ -1,11 +1,19 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
+
 include "incs/header.php";
 require_once "admin/src/ProdutoDAO.php";
 require_once "admin/src/ClienteDAO.php";
 require_once "admin/src/CategoriaDAO.php";
 require_once "admin/src/BannerDAO.php";
+require_once "admin/src/ClienteLogDAO.php";
+
+if(isset($_SESSION["idcliente"]) ){
+    $ClienteLog = new ClienteLogDAO();
+$ClienteLog->registrarLog($_SESSION['idcliente'], '/index');
+}
+
 
 $clienteDAO = new ClienteDAO();
 $clienteDAO->registrarVisita();

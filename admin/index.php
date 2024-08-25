@@ -1,28 +1,45 @@
 <?php
-    include "views/layout/topo.php";
-    include "src/ProdutoDAO.php";
-    include "src/ClienteDAO.php";
+include "views/layout/topo.php";
+include "src/ProdutoDAO.php";
+include "src/ClienteDAO.php";
+include "src/ClienteLogDAO.php";
 
-    $produtoDAO =new ProdutoDAO();
-    $clienteDAO =new ClienteDAO();
-    $produtos = $produtoDAO->contarProdutos();
-    $clientes = $produtoDAO->contarClientes();
-    $visitas = $clienteDAO->contarVisitas()
+$produtoDAO = new ProdutoDAO();
+$clienteDAO = new ClienteDAO();
+$produtos = $produtoDAO->contarProdutos();
+$clientes = $produtoDAO->contarClientes();
+$visitas = $clienteDAO->contarVisitas();
+
+$ClienteLog = new ClienteLogDAO();
+
+$visitasProdutos = $ClienteLog->countProdutos();
+
+$nomesProdutos = [];
+$quantidadeVisitas = [];
+
+foreach ($visitasProdutos as $produto) {
+    $nomesProdutos[] = $produto['nomeproduto'];
+    $quantidadeVisitas[] = $produto['visitas'];
+}
+
+// Convertendo arrays PHP para JSON, que será usado no JavaScript
+$nomesProdutosJson = json_encode($nomesProdutos);
+$quantidadeVisitasJson = json_encode($quantidadeVisitas);
 
 ?>
 
 <?php
-    if (isset($_GET['msg'])):
+if (isset($_GET['msg'])):
 ?>
     <div class="alert alert-success" role="alert">
-        <?=$_GET['msg']?>
+        <?= $_GET['msg'] ?>
     </div>
 <?php
-    endif;
+endif;
 ?>
-        <!-- CONTEÚDO -->
-            
-        <div class="container mt-5">
+<!-- CONTEÚDO -->
+
+<div class="container mt-5">
     <div class="row">
         <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -31,9 +48,7 @@
                     <h3><?php echo $produtos ?></h3>
                     <p>Produtos</p>
                 </div>
-                <div class="icon">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
+
                 <a href="/admin/views/produtos/form_lista_produtos.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
@@ -45,9 +60,7 @@
                     <h3>Futuro</h3>
                     <p>Vendas</p>
                 </div>
-                <div class="icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
+
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
@@ -59,9 +72,7 @@
                     <h3><?php echo $clientes ?></h3>
                     <p>Clientes registrados</p>
                 </div>
-                <div class="icon">
-                    <i class="fas fa-user-plus"></i>
-                </div>
+
                 <a href="/admin/views/clientes/form_lista_clientes.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
@@ -73,9 +84,7 @@
                     <h3><?php echo $visitas ?></h3>
                     <p>Visitas</p>
                 </div>
-                <div class="icon">
-                    <i class="fas fa-users"></i>
-                </div>
+
                 <a href="/admin/views/clientes/form_lista_clientes.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
@@ -87,23 +96,22 @@
     <div class="row">
         <div class="col-lg-7">
             <!-- Sales Chart -->
-            <div class="card">
+            <div class="card mt-5">
                 <div class="card-header">
                     <h3 class="card-title">Sales</h3>
                 </div>
                 <div class="card-body">
-                    <div id="sales-chart" style="height: 250px;"></div>
                 </div>
             </div>
         </div>
         <div class="col-lg-5">
             <!-- Visitors Chart -->
-            <div class="card">
+            <div class="card mt-5">
                 <div class="card-header">
-                    <h3 class="card-title">Visitors</h3>
+                    <h3 class="card-title">Visitas por Produtos</h3>
                 </div>
                 <div class="card-body">
-                    <div id="visitors-chart" style="height: 250px;"></div>
+                <canvas id="graficoVisitas" width="400" height="200"></canvas>
                 </div>
             </div>
         </div>
@@ -111,37 +119,43 @@
     <!-- /.row -->
 </div>
 
-<!-- Chart.js -->
-<?php
-// Exemplo de consulta para obter dados de vendas
-$salesData = [40, 50, 40, 60, 70, 80, 90]; // Simulação de dados, mas normalmente você faria uma consulta ao banco de dados
-
-?>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    var salesData = <?= json_encode($salesData) ?>;
-    var ctx = document.getElementById('sales-chart').getContext('2d');
-    var salesChart = new Chart(ctx, {
-        type: 'line',
+    // Recebendo dados do PHP
+    const nomesProdutos = <?= $nomesProdutosJson; ?>;
+    const quantidadeVisitas = <?= $quantidadeVisitasJson; ?>;
+
+    // Criando o gráfico
+    const ctx = document.getElementById('graficoVisitas').getContext('2d');
+    const graficoVisitas = new Chart(ctx, {
+        type: 'polarArea', // Tipo de gráfico: barra
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: nomesProdutos, // Nomes dos produtos
             datasets: [{
-                label: 'Sales',
-                data: salesData,
-                borderColor: 'rgba(0, 123, 255, 1)',
-                borderWidth: 2,
-                fill: true,
-                backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                label: 'Número de Visitas',
+                data: quantidadeVisitas, // Quantidade de visitas
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(75, 192, 192)',
+                    'rgb(255, 205, 86)',
+                    'rgb(201, 203, 207)',
+                    'rgb(54, 162, 235)'
+                ]
             }]
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true // Começar o eixo Y no zero
+                }
+            }
         }
     });
 </script>
 
 
 
+
 <?php
-    include "views/layout/rodape.php";
+include "views/layout/rodape.php";
 ?>

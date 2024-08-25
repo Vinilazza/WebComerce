@@ -52,6 +52,33 @@ class ClienteDAO{
         return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
     }
 
+
+    function verificarUsuario($google_id) {
+        $conexao = ConexaoBD::getConexao();
+    
+        $query = "SELECT * FROM clientes WHERE google_id = :google_id";
+        $stmt = $conexao->prepare($query);
+        $stmt->bindParam(':google_id', $google_id, PDO::PARAM_STR); 
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    
+    function cadastrarUsuario($id, $nome, $email, $foto) {
+        $conexao = ConexaoBD::getConexao();
+    
+        $query = 'INSERT INTO clientes (nome, email, google_id, foto) VALUES (:nome, :email, :google_id, :foto)';
+        $stmt = $conexao->prepare($query);
+        $stmt->bindParam(':google_id', $id, PDO::PARAM_STR);
+        $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':foto', $foto, PDO::PARAM_STR); 
+    
+        $stmt->execute();
+    }
+    
+
+
 }
 
 ?>

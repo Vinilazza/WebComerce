@@ -7,7 +7,7 @@ class ProdutoDAO
 
     public function consultarProdutos() {
         $conexao = ConexaoBD::getConexao();
-        $sql = "SELECT p.idproduto, p.nome, p.preco_avista, p.preco_parcelado, i.imagem
+        $sql = "SELECT p.idproduto, p.nome, p.preco_avista, p.preco_parcelado,p.visitas, i.imagem
         FROM produto p
         LEFT JOIN produto_imagens i ON p.idproduto = i.idproduto AND i.principal = 1";
         $stmt = $conexao->prepare($sql);
@@ -17,7 +17,7 @@ class ProdutoDAO
     function consultarPorChave($chave)
     {
         $conexao = ConexaoBD::getConexao();
-        $sql = "SELECT p.idproduto, p.nome, p.preco_avista, p.preco_parcelado, i.imagem
+        $sql = "SELECT p.idproduto, p.nome, p.preco_avista, p.preco_parcelado,p.visitas, i.imagem
         FROM produto p
         LEFT JOIN produto_imagens i ON p.idproduto = i.idproduto AND i.principal = 1 where nome like '%$chave%'";
         $stmt = $conexao->prepare($sql);
