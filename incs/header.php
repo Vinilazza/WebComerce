@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 require_once "admin/src/CategoriaDAO.php";
 
 $categoriaDAO = new CategoriaDAO();
@@ -33,7 +34,7 @@ $cart_count = count($_SESSION['carrinho']);
 <body class="bg-opacity-75">
     <!-- NAV - Busca, Logo e Carrinho -->
     <!-- NAV - Busca, Logo e Carrinho -->
-    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light ">
         <div class="container d-flex">
             <!-- Logo -->
             <div class="letra col-2 d-flex">
@@ -71,7 +72,7 @@ $cart_count = count($_SESSION['carrinho']);
             <!-- Carrinho - visível apenas em telas maiores -->
             <div class="d-flex justify-content-end d-none d-lg-flex">
                 <div class="d-flex align-items-center">
-                    <a href="carrinho.php" class="hrv text-decoration-none text-dark position-relative">
+                    <a href="carrinho.php" class="hrv text-decoration-none text-dark position-relative me-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                         </svg>
@@ -81,11 +82,31 @@ $cart_count = count($_SESSION['carrinho']);
                             </span>
                         <?php endif; ?>
                     </a>
-                    <a href="login.php" class="hrv mx-3 text-decoration-none text-dark">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                        </svg>
-                    </a>
+
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <div class="dropdown">
+                            <a href="#" class="btn-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?= htmlspecialchars($_SESSION['user_picture']) ?>" style="border-radius: 50px" width="30" alt="Foto de Perfil">
+                            </a>
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header">Seja bem vindo, <?= htmlspecialchars($_SESSION['user_name']) ?></li>
+                                <li><a href="#" class="dropdown-item">Meu perfil</a></li>
+                                <li><a href="#"class="dropdown-item">Configurações</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/logout.php"class="dropdown-item">Sair</a></li>
+                            </ul>
+                        </div>
+
+                    <?php else: ?>
+                        <a href="login.php" class="hrv mx-3 text-decoration-none text-dark">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                            </svg>
+                        </a>
+                    <?php endif; ?>
+
+
                 </div>
             </div>
 
@@ -101,7 +122,7 @@ $cart_count = count($_SESSION['carrinho']);
     <header class="navbar navbar-expand-lg navbar-light shadow-sm">
         <div class="collapse navbar-collapse" id="navbarHeader">
             <div class="container d-flex align-items-center" style="height: 35px;">
-            <li class="nav-item d-none d-lg-block dropdown me-2 p-2" style="box-shadow: 0 0 1px rgba(0, 0, 0, 0);">
+                <li class="nav-item d-none d-lg-block dropdown me-2 p-2" style="box-shadow: 0 0 1px rgba(0, 0, 0, 0);">
                     <a class="text-decoration-none dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Categorias
                     </a>

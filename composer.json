@@ -1,0 +1,17 @@
+{
+    "name": "web/comerce",
+    "autoload": {
+        "psr-4": {
+            "Web\\Comerce\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "vini",
+            "email": "vinilazza2016cris@gmail.com"
+        }
+    ],
+    "require": {
+        "google/apiclient": "^2.17"
+    }
+}

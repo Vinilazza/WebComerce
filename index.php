@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/vendor/autoload.php';
+
 include "incs/header.php";
 require_once "admin/src/ProdutoDAO.php";
 require_once "admin/src/ClienteDAO.php";
