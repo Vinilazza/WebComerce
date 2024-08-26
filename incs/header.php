@@ -56,7 +56,7 @@ $cart_count = count($_SESSION['carrinho']);
                 <div class="d-flex align-items-center">
                     <form action="search.php" method="GET">
                         <div class="form shadow-sm">
-                            <input type="text" class="form-control form-input-sm search-bar" placeholder="Buscar produtos, marcas e muito mais...">
+                            <input type="text" name="query" class="form-control form-input-sm search-bar" placeholder="Buscar produtos, marcas e muito mais...">
                             <span class="left-pan">
                                 <button class="btn btn-transparent btn-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -83,17 +83,27 @@ $cart_count = count($_SESSION['carrinho']);
                         <?php endif; ?>
                     </a>
 
-                    <?php if (isset($_SESSION['user_id'])): ?>
+                    <?php if (isset($_SESSION['user_id']) || isset($_SESSION['user_email'])): ?>
                         <div class="dropdown">
-                            <a href="#" class="btn-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?= htmlspecialchars($_SESSION['user_picture']) ?>" style="border-radius: 50px" width="30" alt="Foto de Perfil">
+                            <a href="#" class="btn-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <?php if (!empty($_SESSION['user_picture'])): ?>
+                                    <!-- Exibir a imagem a partir de uma URL -->
+                                    <img src="<?= htmlspecialchars($_SESSION['user_picture']) ?>" style="border-radius: 50px" width="30" alt="Foto de Perfil">
+                                <?php elseif (!empty($_SESSION['user_picture_blob'])): ?>
+                                    <!-- Exibir a imagem a partir de um blob em base64 -->
+                                    <img src="data:image/jpeg;base64,<?= base64_encode($_SESSION['user_picture_blob']) ?>" style="border-radius: 50px" width="30" alt="Foto de Perfil">
+                                <?php else: ?>
+                                    <!-- Exibir uma imagem padrão caso nenhuma das anteriores esteja definida -->
+                                    <img src="/img/default-profile.png" style="border-radius: 50px" width="30" alt="Foto de Perfil Padrão">
+                                <?php endif; ?>
                             </a>
-                                <span class="caret"></span></button>
+                            <span class="caret"></span></button>
                             <ul class="dropdown-menu">
                                 <li class="dropdown-header">Seja bem vindo, <?= htmlspecialchars($_SESSION['user_name']) ?></li>
                                 <li><a href="#" class="dropdown-item">Meu perfil</a></li>
-                                <li><a href="#"class="dropdown-item">Configurações</a></li>
+                                <li><a href="#" class="dropdown-item">Configurações</a></li>
                                 <li class="divider"></li>
-                                <li><a href="/logout.php"class="dropdown-item">Sair</a></li>
+                                <li><a href="/logout.php" class="dropdown-item">Sair</a></li>
                             </ul>
                         </div>
 

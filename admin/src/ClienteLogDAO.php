@@ -44,7 +44,7 @@ class ClienteLogDAO
     public function countProdutos()
     {
         $sql = "
-SELECT p.idproduto, p.nome as nomeproduto, SUM(p.visitas) as visitas
+            SELECT p.idproduto, p.nome as nomeproduto, p.visitas as visitas
             FROM produto p
             JOIN clientelogs cl ON cl.action = p.idproduto WHERE cl.cliente_id AND action REGEXP '^[0-9]+$'
             GROUP BY p.idproduto, p.nome

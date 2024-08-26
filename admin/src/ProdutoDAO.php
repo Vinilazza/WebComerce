@@ -149,7 +149,11 @@ class ProdutoDAO
     
         // Calcula os preços
         $preco_avista = $custoProduto * (1 + $margem / 100);
-        $preco_parcelado = $preco_avista * 1.05; // Ajuste conforme sua lógica
+        $preco_avista = ceil($preco_avista) + 0.99;
+
+        $preco_parcelado = $preco_avista * 1.10; 
+        $preco_parcelado = ceil($preco_parcelado) + 0.99;
+
     
         // Inserir o produto na tabela 'produto'
         $sql = "INSERT INTO produto 
@@ -172,35 +176,59 @@ class ProdutoDAO
     
 
 
-    public function editar($dados, $id)
+    public function editar($dados)
     {
         $conexao = ConexaoBD::getConexao();
 
+        // Extrair dados do formulário
         $nome = $dados['nome'];
-        $preco = $dados['preco'];
+        $custoProduto = $dados['custo_produto']; // Este campo agora representa o custo do produto
         $parcelas = $dados['parcelas'];
         $categoria = $dados['tipo'];
-        $joia = $dados['joia_produto'];
-        $descricao = $dados['descricao'];
+        $descricaotecnica = $dados['descricao_tecnica'];
+        $descricaoproduto = $dados['descricao_produto'];
         $condicao = $dados['condicao'];
-        $desccurta = $dados['desccurta'];
-
-        $imagem = pegarImagem($_FILES);
-
+        $quantidade = $dados['quantidade'];
+        $imagemPrincipal = $dados['imagem_principal'];
+        $margem_produto_id = $dados['margem_produto_id']; // ID da margem selecionada
+        $idproduto = $dados['idproduto']; // ID do produto a ser atualizado
+        
+        // Pega a margem selecionada
+        $valorProdutoDAO = new ValorProdutoDAO();
+        $margem = $valorProdutoDAO->consultarMargemPorID($margem_produto_id)['margem'];
+        
+        // Calcula os preços
+        $preco_avista = $custoProduto * (1 + $margem / 100);
+        $preco_avista = ceil($preco_avista) + 0.99;
+        
+        $preco_parcelado = $preco_avista * 1.10;
+        $preco_parcelado = ceil($preco_parcelado) + 0.99;
+        
+        // Atualizar o produto na tabela 'produto'
         $sql = "UPDATE produto SET 
-        nome='$nome', 
-        preco='$preco', 
-        parcelas=$parcelas,
-        descricao='$descricao', 
-        idcategoria=$categoria,
-        idjoia=$joia,
-        condicao='$condicao',
-        desccurta='$desccurta',
-        imagem='$imagem'
-        WHERE idproduto=$id";
-
-
+                nome = '$nome',
+                parcelas = $parcelas,
+                idcategoria = $categoria,
+                descricao_tecnica = '$descricaotecnica',
+                descricao_produto = '$descricaoproduto',
+                margem_aplicada = $margem,
+                preco_avista = $preco_avista,
+                preco_parcelado = $preco_parcelado,
+                quantidade = '$quantidade',
+                condicao = '$condicao',
+                custo_produto = $custoProduto,
+                margem_produto_id = $margem_produto_id
+                WHERE idproduto = $idproduto";
         $conexao->exec($sql);
+        
+        // Verificar se há imagens enviadas
+        if (!empty($_FILES['imagens']['tmp_name'][0])) {
+            foreach ($_FILES['imagens']['tmp_name'] as $key => $tmp_name) {
+                $imagem = file_get_contents($tmp_name);  // Obtém o conteúdo binário da imagem
+                $this->adicionarImagem($idproduto, $imagem, $key, $imagemPrincipal);  // Chama o método adicionarImagem
+            }
+        }
+        
     }
 
 

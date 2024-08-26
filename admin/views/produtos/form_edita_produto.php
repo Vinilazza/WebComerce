@@ -18,7 +18,9 @@ $produto = $produtoDAO->consultarProdutoPorID($idproduto);
 ?>
 
 <h2>Edição de produto</h2>
-<form method="POST" action="cadastrar.php" enctype="multipart/form-data">
+<form method="POST" action="editar.php" enctype="multipart/form-data">
+
+    <input type="hidden" name="idproduto" value="<?=$idproduto?>">
 
     <label for="nome" class="form-label">Nome:</label>
     <input type="text" required class="form-control mb-4" name="nome" value="<?=$produto['nome']?>">

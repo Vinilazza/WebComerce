@@ -75,7 +75,7 @@ $_SESSION['carrinho'] = $carrinho;
 ?>
 
 <?php ?>
-<main class="bg-light p-4">
+<main class="bg-light p-4" style="height: 64vh">
     <section>
         <div class="container d-flex">
             <?php
