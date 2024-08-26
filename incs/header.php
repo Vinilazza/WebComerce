@@ -99,7 +99,7 @@ $cart_count = count($_SESSION['carrinho']);
                             </a>
                             <span class="caret"></span></button>
                             <ul class="dropdown-menu">
-                                <li class="dropdown-header">Seja bem vindo, <?= htmlspecialchars($_SESSION['user_name']) ?></li>
+                                <li class="dropdown-header dropdown-menu-end text-wrap">Seja bem vindo, <?= htmlspecialchars($_SESSION['user_name']) ?></li>
                                 <li><a href="#" class="dropdown-item">Meu perfil</a></li>
                                 <li><a href="#" class="dropdown-item">Configurações</a></li>
                                 <li class="divider"></li>

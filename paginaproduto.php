@@ -75,9 +75,9 @@ if (isset($_SESSION["idcliente"])) {
                 </div>
                 <div class="my-5">
                     <h5>Descrição Técnica</h5>
-                    <p><?= htmlspecialchars($produto['descricao_tecnica']) ?></p>
+                    <p><?= $produto['descricao_tecnica']     ?></p>
                     <h5>Descrição do Produto</h5>
-                    <p><?= htmlspecialchars($produto['descricao_produto']) ?></p>
+                    <p><?= $produto['descricao_produto'] ?></p>
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-dark text-light w-100">ADICIONAR AO CARRINHO</button>

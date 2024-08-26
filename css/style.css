@@ -329,26 +329,42 @@ input[type=number] {
 .dropdown-menu {
     margin-top: 10px; /* Ajusta a margem superior para o menu dropdown */
 }
-
+.cd-title {
+  font-size: 10px;
+}
 
  }
 
 @media (max-width: 768px) { 
-
+.cd-title {
+  font-size: 10px;
+}
  }
 
 @media (max-width: 992px) { 
   .navbar .form-inline {
     display: none; /* Oculta a barra de busca em dispositivos móveis */
 }
+.cd-title {
+  font-size: 10px;
+}
  }
 
 @media (max-width: 1200px) { 
-
+  .cd-title {
+    font-size: 13px;
+  }
  }
 
 @media (max-width: 1400px) { 
-
+  .cd-title {
+    font-size: 20px;
+  }
+ }
+ @media (max-width: 2500px) { 
+  .cd-title {
+    font-size: 17px;
+  }
  }
 
 
@@ -376,4 +392,9 @@ input[type=number] {
   top: 100%;
   left: 0;
   margin-top: .125rem;
+}
+
+.dropdown-menu {
+  right: 0;
+  left: auto;
 }

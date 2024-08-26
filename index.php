@@ -99,7 +99,7 @@ $totalPaginas = ceil($totalProdutos / $limit);
                                     <div class="card h-100 w-100 p-3 shadow-sm ">
                                         <img src="data:image/png;base64,<?= base64_encode($categoria['imagem']) ?>" class="img-fluid rounded w-100" alt="<?= htmlspecialchars($categoria['categoria']) ?>">
                                         <div class="card-body text-center">
-                                            <h5 class="card-title" style="font-size: 20px;"><?= htmlspecialchars($categoria['categoria']) ?></h5>
+                                            <h5 class="card-title cd-title text-wrap" ><?= htmlspecialchars($categoria['categoria']) ?></h5>
                                             <a href="index.php?categoria=<?= $categoria['idcategoria'] ?>" style="font-size:16px;" class="text-decoration-none text-dark">Ver Produtos</a>
                                         </div>
                                     </div>

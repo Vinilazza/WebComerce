@@ -10,6 +10,8 @@ $categorias = $categoriaDAO->consultarCategorias();
 $valorProdutoDAO = new ValorProdutoDAO();
 $margens = $valorProdutoDAO->listarMargens();
 ?>
+<!-- Inclua o script do CKEditor na seção <head> do seu HTML -->
+<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 
 <h2>Cadastro de Produto</h2>
 <form method="POST" action="cadastrar.php" enctype="multipart/form-data">
@@ -77,7 +79,10 @@ $margens = $valorProdutoDAO->listarMargens();
     <button class="btn btn-dark mt-4">Cadastrar</button>
 
 </form>
-
+<script>
+        CKEDITOR.replace('descricao_tecnica');
+    CKEDITOR.replace('descricao_produto');
+</script>
 <script>
     document.getElementById('imagem').addEventListener('change', function(event) {
         var imagePreview = document.getElementById('image-preview');
